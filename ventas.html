@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas</title>
+    <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png">
+     <script src="./dominio/ventas.js"></script>
+    <script src="./dominio/memoria.js"></script>
+    <script src="./dominio/verduleria2.js"></script>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body onload="CargoDatosVentas()" class="bodyve">
+ <a class="links" href="index.html">Volver</a>
+
+<header>
+ <h1>FrutaManía</h1>
+ <h2>ABM Ventas</h2>
+</header>
+
+<main>
+        <form id="ventas">
+            <section>
+                <div class="campos">
+
+                    <label for="codigo">Codigo:</label>
+                    <input type="number" id="codigo" placeholder="Ej: 312">
+
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha">
+                    
+                    <label for="codigo-vendedor">Vendedor:</label>
+                    <select id="codigo-vendedor"></select>
+                    
+
+                    <label for="codigo-catalogo">Catalogo:</label>
+                    <select id="codigo-catalogo" onchange="CargarPrecioCatalogo()"></select>
+                    
+                    <label for="precio-catalogo">Precio:</label>
+                    <input type="number" id="precio-catalogo" disabled>
+                    
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="text" id="cantidad" onblur="CalculoTotal()" placeholder="Ej: 6">
+                    
+                    <label for="total">Total:</label>
+                    <input type="text" id="total" disabled>
+
+                </div>
+ 
+                <div class="botones">
+                <button type="button" class="btn_agregar" onclick="AgregarVenta()">Agregar</button>
+                <button type="button" class="btn_modificar" onclick="ModificarVenta()">Modificar</button>
+                <button type="button" class="btn_eliminar" value="Eliminar" onclick="EliminarVenta()">Eliminar</button>
+                <button class="btn_limpiar" type="button"   onclick="LimpiarVenta()">Limpiar</button>
+
+                </div>
+            </section>
+        </form>
+
+        <section class="listado">
+            <label for="lista-ventas">Listado de Ventas Realizadas</label>
+            <select  onclick="SeleccionarVenta()" id="lista-ventas" size="6"></select>
+        </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+/*ESTILOS GENERALES*/
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef6ee;
+    background-image: url("../imagenes/fondo.png");
+}
+
+.bodyc,
+.bodyven,
+.bodyve {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("../imagenes/fondo.png");
+}
+
+
+/*ENCABEZADO*/
+
+header {
+    text-align: center;
+    padding: 20px 40px;
+}
+
+h1 {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 42px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2e7d32;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+
+/*LOGOS*/
+
+.logo {
+    width: 200px;
+}
+
+.logo2 {
+    width: 500px;
+}
+
+
+/*CONTENEDORES*/
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+}
+
+
+/*FORMULARIOS*/
+
+form {
+    width: min(700px, 90%);
+    margin: 30px auto 15px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
+}
+
+.campos {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 15px;
+    align-items: center;
+}
+
+label {
+    display: block;
+    text-align: center;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: white;
+}
+
+form select {
+    width: 100%;
+}
+
+input:disabled {
+    background: #ececec;
+    color: #555;
+}
+
+
+/*BOTONES*/
+
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .25s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+button:hover {
+    background: #f1c40f;
+    color: white;
+}
+
+.btn_agregar,
+.btn_modificar,
+.btn_eliminar,
+.btn_limpiar {
+    background: white;
+    color: #0f6d1d;
+    border: 2px solid #0f6d1d;
+}
+
+
+/*LISTADOS*/
+
+.listado {
+    width: min(700px, 90%);
+    margin: 20px auto 40px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+.listado label {
+    display: block;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #0f6d1d;
+}
+
+#lista-ventas {
+    width: 100%;
+    height: 220px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.vendedores h3 {
+    text-align: center;
+}
+
+.foto-lista {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+
+/*TABLA CATALOGO*/
+
+.tabla-Catalgo{
+    width: 95%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+.tabla-Catalgo th{
+    background: #2e7d32;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.tabla-Catalgo td{
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: middle;
+}
+
+.tabla-Catalgo tr:nth-child(even){
+    background: #f7fbf7;
+}
+
+.tabla-Catalgo tr:hover{
+    background: #e8f5e9;
+    transition: .2s;
+}
+
+.tabla-Catalgo img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #4caf50;
+    box-shadow: 0 3px 8px rgba(0,0,0,.2);
+}
+
+.tabla-Catalgo td:first-child{
+    font-weight: bold;
+    color: #2e7d32;
+}
+/*MENÚ Y NAVEGACIÓN*/
+
+.barra {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 15px 25px;
+    color: white;
+}
+
+.menu a {
+    display: inline-block;
+}
+
+.menu2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.links,
+.linksCatalogo {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #d9d9d9;
+    border-radius: 10px;
+    background: white;
+    color: forestgreen;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: right;
+}
+
+.links:hover,
+.linksCatalogo:hover {
+    background: #e7fe35;
+    transition: .2s;
+}
+
+
+/*TARJETAS*/
+
+.pedidos,
+.estadisticas {
+    width: 400px;
+    height: auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+.pedidos {
+    margin: 0;
+}
+
+.estadisticas {
+    margin: 10px;
+    text-align: center;
+}
+
+.pedidos h2,
+.estadisticas h2 {
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+
+/*PIE DE PÁGINA*/
+
+footer {
+    margin-top: 10px;
+    padding: 15px 25px;
+    text-align: center;
+}
+
+footer h2 {
+    margin-bottom: 12px;
+}
+
+footer p {
+    margin-top: 10px;
+}

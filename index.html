@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verduleria</title>
+   <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png">
+<script src="dominio/memoria.js" ></script>
+<script src="dominio/verduleria2.js"></script>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body onload="CargoDatosEstadisticas()"> 
+
+   <header>
+    <nav class="barra">
+        <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria">
+
+            <div class="menu center">
+                <h1>FrutaManía</h1>
+                <a class="links" href="catalogo.html">Catalogo</a>
+                <a class="links" href="vendedores.html">Vendedores</a>
+                <a class="links" href="ventas.html">Ventas</a>
+                
+            </div>
+        <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria"> 
+    </nav>
+   </header>
+   
+   
+<main class="menu2">
+    <section class="pedidos">
+        <article>
+        <h2>Bienvenidos</h2>
+        <p>Bienvenidos a nuestra verduleria</p>
+        </article>
+
+        <article>
+             <h2>Sobre Nosotros</h2>
+             <p>FrutaMania es una verdulería comprometida con ofrecer frutas y verduras frescas, de excelente calidad y a precios accesibles.
+                Nuestro objetivo es brindar una atención personalizada, un amplio stock de productos y un servicio eficiente que satisfaga las necesidades de cada cliente.</p>
+        </article>
+
+        <article>
+        <h2>Pedidos</h2>
+        <ul>
+        <li>Hacemos envíos en Rosario de lunes a sábados</li>
+	    <li>Entregas desde las 11:30 hasta las 20:00 hrs.<br> Recibimos pedidos hasta las 18:00 hrs; los pedidos realizados después de esta hora se entregarán al día siguiente.</li>
+		</ul> 
+        </article>
+
+    </section>
+
+    
+    <img src="imagenes/Logoverduleria.png" alt="Logo Verduleria" class="logo2">
+   
+
+    <section class="estadisticas">
+        <h2>Estadisticas Generales de FrutaManía</h2>
+                <div class="campos">
+                    <label for="totalRecaudado">Total recaudado: </label>
+                    <input type="text" id="totalRecaudado" disabled>
+
+                    <label for="masVendido">Fruta o Verdura más vendida: </label>
+                    <input type="text" id="masVendido" disabled>
+
+                    <label for="mejorVendedor">Mejor vendedor: </label>
+                    <input type="text" id="mejorVendedor" disabled>
+               </div>
+        <section class="listado">
+            <label for="catalogos-con-stock">Catalogo con Stock</label>
+            <br>
+            <select id="catalogos-con-stock" size="8"></select>
+        </section>
+
+    </section>   
+
+</main>
+  
+
+
+    <footer id="contacto">
+
+        <h2>Contacto</h2>
+
+        <p>Email: frutamania@gmail.com</p>
+
+        <p>Teléfono: 099123456</p>
+
+        <p>Dirección: Rosario Avenida Principal 1234</p>
+
+        <p>© 2026 Todos los derechos reservados</p>
+
+    </footer>
+
+
+
+</body>
+</html>

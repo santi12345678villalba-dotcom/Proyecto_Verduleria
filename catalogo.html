@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CATALOGO</title>
+    <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png"> 
+    <script src="dominio/catalogo.js"></script>
+    <script  src="dominio/memoria.js"></script>
+    <script src="dominio/verduleria2.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body onload="CargoDatosCatalogos()" class="bodyc">  
+   <a  class="linksCatalogo" href="index.html">Volver</a>
+
+  <header>
+ 
+    <h1>FrutaManía</h1>
+   <h2>ABM Catalogo</h2>
+ </header>
+
+<main class="contenedor">
+        <form id="catalogo">
+            <section>
+                
+                <div class="campos">
+                    <label for="codigo">Codigo:</label>
+                    <input type="text" id="codigo" placeholder="Ej: 123">
+                    
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" placeholder="Ej: Manzana">
+                    
+                    <label for="descripcion">Descripcion:</label>
+                    <textarea id="descripcion" rows="3" placeholder="Ej: Manzana Verde de primera calidad"></textarea>
+                    
+                    <label for="precio">precio:</label>
+                    <input type="text" id="precio" placeholder="Ej: 25">
+                    
+                    <label for="stock">stock:</label>
+                    <input type="text" id="stock" placeholder="Ej: 45">
+                   
+                     <label for="foto">Nombre de la foto</label>
+      <input type="text" id="foto" placeholder="Ej: fruta.png">                    
+                </div>
+
+                <div class="botones">
+                    <button type="button" class="btn_agregar" onclick="AgregarCatalogo()">Agregar</button>
+                    <button type="button" class="btn_modificar" onclick="ModificarCatalogo()">Modificar</button>
+                    <button type="button" class="btn_eliminar" onclick="EliminarCatalogo()">Eliminar</button>
+                    <button class="btn_limpiar" type="button" onclick="InicializarCatalogo()">Limpiar</button>
+
+                </div>
+            </section>
+        </form>
+
+        <section class="listado">
+            <label for="lista-catalogos">Catalogo de Frutas y Verduras</label>
+            <select  onclick="SeleccionarCatalogo()" id="lista-catalogos" size="6"  ></select>
+        </section>
+        
+        <div id="contenedorCatalogo" class="tabla-Catalgo"></div>
+
+    </main>
+
+</body>
+</html>
