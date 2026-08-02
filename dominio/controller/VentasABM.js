@@ -1,5 +1,7 @@
 let ventas = [];
 
+
+
 //#region Metodos de Ventas
 function CargoDatosVentas(){
     const LaMemoria = new Memoria();
