@@ -32,6 +32,7 @@ function AgregarVendedor(){
     const LaMemoria = new Memoria();
     LaMemoria.escribir('vendedores', vendedores);
 
+    alert("Vendedor añadido correctamente!");
     InicializarVendedor();
     ListarVendedores();
 
@@ -90,7 +91,7 @@ function ModificarVendedor(){
 
     const LaMemoria = new Memoria();
     LaMemoria.escribir('vendedores', vendedores);
-    
+    alert("Vendedor modificado correctamente!");
     InicializarVendedor();
     ListarVendedores();
 }
@@ -137,6 +138,7 @@ function LimpiarVendedor(){
 alert("Cajas limpiadas correctamente!");
     InicializarVendedor();
 }
+
 
 
 
