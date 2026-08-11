@@ -1,4 +1,4 @@
-class Ventas {
+export class Ventas {
     constructor(pCodigo, pFecha, pCatalogo , pVendedor, pCantidad, pTotal){
        this.codigo = pCodigo;
        this.fecha = pFecha;
