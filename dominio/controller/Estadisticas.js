@@ -63,6 +63,27 @@ function CatalogoMasVendido(){
     }
 }
 
+// const CatalogoMasVendido = () => {
+//     let mayor = 0;
+//     let objMayor = null;
+    
+//     for (const unCatalogo of catalogos) {
+//         const cantVendidos = unCatalogo.cantVendidos || 0;
+//         if (cantVendidos > mayor) {
+//             mayor = cantVendidos;
+//             objMayor = unCatalogo;
+//         }
+//     }
+    
+//     const masVendidoInput = document.getElementById('masVendido');
+    
+//     if (objMayor) {
+//         masVendidoInput.value = `${objMayor.nombre} con ${objMayor.cantVendidos || 0} unidades`;
+//     } else {
+//         masVendidoInput.value = 'Sin ventas';
+//     }
+// }
+
 function MejorVendedor(){
     let mayor = 0;
     let objMayor = null;

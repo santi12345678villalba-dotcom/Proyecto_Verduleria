@@ -126,6 +126,21 @@ function SeleccionarCatalogo(){
     }
 }
 
+// const SeleccionarCatalogo = () => {
+//     const codigoSeleccionado = document.getElementById('lista-catalogos').value;
+   
+//     for (const objCatalogo of catalogos) {
+//         if (objCatalogo.codigo == codigoSeleccionado) {
+//             document.getElementById("foto").value = objCatalogo.foto;
+//             document.getElementById("codigo").value = objCatalogo.codigo;
+//             document.getElementById("nombre").value = objCatalogo.nombre;
+//             document.getElementById("descripcion").value = objCatalogo.descripcion;
+//             document.getElementById("precio").value = objCatalogo.precio;
+//             document.getElementById("stock").value = objCatalogo.stock;
+//         }
+//     }
+// }
+
 function ModificarCatalogo(){
     // Leo el codigo desde la linea seleccionada
     let codigoSeleccionado = document.getElementById("lista-catalogos").value;
