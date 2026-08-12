@@ -1,3 +1,6 @@
+import { Vendedor } from "../clases/vendedor.js";
+import { Memoria } from "../memoria.js";
+
 let vendedores = [];
 
 
@@ -143,3 +146,11 @@ alert("Cajas limpiadas correctamente!");
 
 
 //#endregion
+
+document.getElementById("btnAgregarVendedor").addEventListener("click", AgregarVendedor);
+document.getElementById("btnModificarVendedor").addEventListener("click", ModificarVendedor);
+document.getElementById("btnEliminarVendedor").addEventListener("click", EliminarVendedor);
+document.getElementById("btnLimpiarVendedor").addEventListener("click", LimpiarVendedor);
+document.getElementById("lista-vendedores").addEventListener("change", SeleccionarVendedor);
+
+CargoDatosVendedor();

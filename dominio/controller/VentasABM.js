@@ -1,4 +1,11 @@
+import { Ventas } from "../clases/ventas.js";
+import { Memoria } from "../memoria.js";
+
+
+
 let ventas = [];
+let catalogos = [];
+let vendedores = [];
 
 
 
@@ -175,6 +182,24 @@ function InicializarVenta(){
     // Pongo el foco en la caja de texto nombre
     document.getElementById("codigo").focus();
 }
+
+function BuscarCatalogo(pCodigo){
+    for (let objCatalogo of catalogos) {
+        if(objCatalogo.codigo == pCodigo){
+            return objCatalogo;
+        }
+    }
+    return null;
+}
+function BuscarVendedor(pCodigo){
+    for (let objVendedor of vendedores) {
+        if(objVendedor.codigo == pCodigo){
+            return objVendedor;
+        }
+    }
+    return null;
+}
+
 
 function AgregarVenta(){
     // Leo los datos ingresados de las cajas de texto
@@ -380,3 +405,10 @@ alert("Cajas limpiadas correctamente!");
 
 //#endregion
 
+document.getElementById("btnAgregarVenta").addEventListener("click", AgregarVenta);
+document.getElementById("btnModificarVenta").addEventListener("click", ModificarVenta);
+document.getElementById("btnEliminarVenta").addEventListener("click", EliminarVenta);
+document.getElementById("btnLimpiarVenta").addEventListener("click", LimpiarVenta);
+document.getElementById("lista-ventas").addEventListener("change", SeleccionarVenta);
+
+CargoDatosVentas();

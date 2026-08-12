@@ -1,3 +1,6 @@
+import { Catalogo } from "../clases/catalogo.js";
+import { Memoria } from "../memoria.js";
+
 let catalogos = [];
 
 //#region Metodos de catalogos
@@ -207,3 +210,10 @@ alert("Cajas limpiadas correctamente!");
 
 //#endregion
 
+document.getElementById("btnAgregarCatalogo").addEventListener("click", AgregarCatalogo);
+document.getElementById("btnModificarCatalogo").addEventListener("click", ModificarCatalogo);
+document.getElementById("btnEliminarCatalogo").addEventListener("click", EliminarCatalogo);
+document.getElementById("btnLimpiarCatalogo").addEventListener("click", LimpiarCatalogo);
+document.getElementById("lista-catalogos").addEventListener("change", SeleccionarCatalogo);
+
+CargarDatosCatalogos();
