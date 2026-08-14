@@ -6,11 +6,12 @@
     <title>CATALOGO</title>
     <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png"> 
      <script type="module" src="dominio/controller/CatalogoABM.js"></script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
 
 </head>
 <body class="bodyc">  
-   <a  class="linksCatalogo" href="index.html">Volver</a>
+<a class="linksCatalogo btn btn-success" href="index.html">Volver</a>
 
   <header>
  
@@ -22,47 +23,72 @@
         <form id="catalogo">
             <section>
                 
-                <div class="campos">
-                    <label for="codigo">Codigo:</label>
-                    <input type="text" id="codigo" placeholder="Ej: 123">
-                    
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" placeholder="Ej: Manzana">
-                    
-                    <label for="descripcion">Descripcion:</label>
-                    <textarea id="descripcion" rows="3" placeholder="Ej: Manzana Verde de primera calidad"></textarea>
-                    
-                    <label for="precio">precio:</label>
-                    <input type="text" id="precio" placeholder="Ej: 25">
-                    
-                    <label for="stock">stock:</label>
-                    <input type="text" id="stock" placeholder="Ej: 45">
-                   
-                     <label for="foto">Nombre de la foto</label>
-      <input type="text" id="foto" placeholder="Ej: fruta.png">                    
+                <div class="row g-3 align-items-center">
+
+                <div class="col-md-4">
+                    <label for="codigo" class="form-label">Código:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="codigo" class="form-control" placeholder="Ej: 123">
                 </div>
 
-                <div class="botones" id="botones-catalogos">
-                    <input id="btnAgregarCatalogo" class="btn_agregar" type="button"  value="Agregar"  >
-                    <input id="btnModificarCatalogo" class="btn_modificar" type="button" value="Modificar" >
-                    <input id="btnEliminarCatalogo" class="btn_eliminar" type="button" value="Eliminar" >
-                    <input id="btnLimpiarCatalogo" class="btn_limpiar" type="button" value="Limpiar" >
+                <div class="col-md-4">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="nombre" class="form-control" placeholder="Ej: Manzana">
+                </div>
 
+                <div class="col-md-4">
+                    <label for="descripcion" class="form-label">Descripción:</label>
+                </div>
+                <div class="col-md-8">
+                    <textarea id="descripcion" class="form-control" rows="3"
+                            placeholder="Ej: Manzana Verde de primera calidad"></textarea>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="precio" class="form-label">Precio:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="precio" class="form-control" placeholder="Ej: 25">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="stock" class="form-label">Stock:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="stock" class="form-control" placeholder="Ej: 45">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="foto" class="form-label">Nombre de la foto:</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" id="foto" class="form-control" placeholder="Ej: fruta.png">
+                </div>
+
+                </div>
+
+
+                <div class="botones" id="botones-catalogos">
+                    <input id="btnAgregarCatalogo" class="btn btn-light border-success" type="button" value="Agregar">
+                    <input id="btnModificarCatalogo" class="btn btn-light border-success" type="button" value="Modificar">
+                    <input id="btnEliminarCatalogo" class="btn btn-light border-success" type="button" value="Eliminar">
+                    <input id="btnLimpiarCatalogo" class="btn btn-light border-success" type="button" value="Limpiar">
                 </div>
             </section>
         </form>
 
         <section class="listado">
             <label for="lista-catalogos">Catalogo de Frutas y Verduras</label>
-            <select  onclick="SeleccionarCatalogo()" id="lista-catalogos" size="6"  ></select>
+           <select onclick="SeleccionarCatalogo()" id="lista-catalogos"  class="form-select" size="6">
+        </select>
         </section>
         
         <div id="contenedorCatalogo" class="tabla-Catalgo"></div>
 
     </main>
-    </main>
-
-       
 
     </body>
 </html>

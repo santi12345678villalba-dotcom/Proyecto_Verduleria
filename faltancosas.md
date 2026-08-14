@@ -6,7 +6,7 @@ Manipulación del DOM	✅ Básico
 ❌ LO QUE LES FALTA IMPLEMENTAR
 Semana 1 - Refactorización
 Requisito	Lo que falta
-JavaScript moderno	Pueden usar let/const pero falta más uso de arrow functions, template literals, destructuring, etc.
+ya esta    JavaScript moderno	Pueden usar let/const pero falta más uso de arrow functions, template literals, destructuring, etc.
 Semana 2 - Interfaz Profesional
 Requisito	Lo que falta
 Bootstrap	❌ No está implementado. Todo es CSS propio
