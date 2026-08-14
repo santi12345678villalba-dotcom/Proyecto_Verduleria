@@ -17,14 +17,42 @@
     <nav class="barra">
         <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria">
 
-            <div class="menu center">
-                <h1>FrutaManía</h1>
+        <div class="menu center">
+            <h1 style="color: white;">FrutaManía</h1>
+            <div class="menu-links desktop-menu">
                 <a class="links" href="catalogo.html">Catalogo</a>
                 <a class="links" href="vendedores.html">Vendedores</a>
                 <a class="links" href="ventas.html">Ventas</a>
-                
             </div>
-        <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria"> 
+        </div>
+
+        <div class="mobile-menu">
+            <div class="topnav">
+                <a href="index.html" class="active">Inicio</a>
+                <div id="myLinks">
+                    <a href="catalogo.html">Catalogo</a>
+                    <a href="vendedores.html">Vendedores</a>
+                    <a href="ventas.html">Ventas</a>
+                </div>
+                <a href="#" class="icon" aria-label="Abrir menú">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="clima" aria-live="polite">
+            <div class="clima-principal">
+                <span class="icono">🌤️</span>
+                <div>
+                    <small>Colonia</small>
+                    <strong>--°C</strong>
+                </div>
+            </div>
+            <div class="clima-datos">
+                <span>Sensación: --°C</span>
+                <span>Humedad: --%</span>
+            </div>
+        </div>
     </nav>
    </header>
    
@@ -52,9 +80,9 @@
 
     </section>
 
-    
-    <img src="imagenes/Logoverduleria.png" alt="Logo Verduleria" class="logo2">
-   
+    <section class="logosection">
+        <img  src="imagenes/Logoverduleria.png" alt="Logo Verduleria" class="logo2">
+    </section>
 
     <section class="estadisticas">
         <h2>Estadisticas Generales de FrutaManía</h2>
@@ -94,7 +122,9 @@
 
     </footer>
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="dominio/controller/Clima.js"></script>
+    <script type="module" src="dominio/controller/NavBar.js"></script>
 
 </body>
 </html>
