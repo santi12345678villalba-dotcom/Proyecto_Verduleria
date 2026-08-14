@@ -9,62 +9,14 @@
      <script type="module" src="dominio/controller/CatalogoABM.js"></script>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
-
-
 </head>
-<body  class="bodyve">
 
-<header>
- 
-   
-    <nav class="barra">
-        <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria">
+<body class="bodyc">  
+<a class="linksCatalogos btn btn-success" href="index.html">Volver</a>
 
-            <div class="menu center">
-                <h1 style="color: white;">FrutaManía</h1>
-                <a class="links" href="catalogo.html">Catalogo</a>
-                <a class="links" href="vendedores.html">Vendedores</a>
-                <a class="links" href="ventas.html">Ventas</a>
-                
-            </div>
-        <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria"> 
-    </nav>
-   
-   
- <h2>ABM Ventas</h2>
-</header>
-
-<main>
-        <form id="ventas">
-            <section>
-                <div class="campos">
-
-                    <label for="codigo">Codigo:</label>
-                    <input type="number" id="codigo" placeholder="Ej: 312">
-
-                    <label for="fecha">Fecha:</label>
-                    <input type="date" id="fecha">
-                    
-                    <label for="codigo-vendedor">Vendedor:</label>
-                    <select id="codigo-vendedor"></select>
-                    
-
-                    <label for="codigo-catalogo">Catalogo:</label>
-                    <select id="codigo-catalogo" onchange="CargarPrecioCatalogo()"></select>
-                    
-                    <label for="precio-catalogo">Precio:</label>
-                    <input type="number" id="precio-catalogo" disabled>
-                    
-                    <label for="cantidad">Cantidad:</label>
-                    <input type="text" id="cantidad" onblur="CalculoTotal()" placeholder="Ej: 6">
-                    
-                    <label for="total">Total:</label>
-                    <input type="text" id="total" disabled>
-
-                </div>
- 
+  <header>
     <h1>FrutaManía</h1>
-   <h2>ABM ventas</h2>
+   <h2>ABM Ventas</h2>
  </header>
 
     <main class="contenedor">
@@ -75,107 +27,70 @@
 
                 <div class="row g-3 align-items-center">
 
-             
                     <div class="col-md-4">
-                        <label for="codigo" class="form-label">
-                            Código:
-                        </label>
+                        <label for="codigo" class="form-label"> Código:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <input type="number"
-                               id="codigo"
-                               class="form-control"
-                               placeholder="Ej: 312">
+                        <input type="number"id="codigo"class="form-control"placeholder="Ej: 312">
                     </div>
 
 
             
                     <div class="col-md-4">
-                        <label for="fecha" class="form-label">
-                            Fecha:
-                        </label>
+                        <label for="fecha" class="form-label">Fecha:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <input type="date"
-                               id="fecha"
-                               class="form-control">
+                        <input type="date"id="fecha" class="form-control">
                     </div>
 
 
                    
                     <div class="col-md-4">
-                        <label for="codigo-vendedor" class="form-label">
-                            Vendedor:
-                        </label>
+                        <label for="codigo-vendedor" class="form-label"> Vendedor:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <select id="codigo-vendedor"
-                                class="form-select">
-                        </select>
+                        <select id="codigo-vendedor"class="form-select"> </select>
                     </div>
 
 
                    
                     <div class="col-md-4">
-                        <label for="codigo-catalogo" class="form-label">
-                            Catálogo:
-                        </label>
+                        <label for="codigo-catalogo" class="form-label">Catálogo:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <select id="codigo-catalogo"
-                                class="form-select"
-                                onchange="CargarPrecioCatalogo()">
-                        </select>
+                        <select id="codigo-catalogo"class="form-select"onchange="CargarPrecioCatalogo()"></select>
                     </div>
 
-
-                 
                     <div class="col-md-4">
-                        <label for="precio-catalogo" class="form-label">
-                            Precio:
-                        </label>
+                        <label for="precio-catalogo" class="form-label">Precio:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <input type="number"
-                               id="precio-catalogo"
-                               class="form-control"
-                               disabled>
+                        <input type="number" id="precio-catalogo"class="form-control" disabled>
                     </div>
 
 
                    
                     <div class="col-md-4">
-                        <label for="cantidad" class="form-label">
-                            Cantidad:
-                        </label>
+                        <label for="cantidad" class="form-label">Cantidad:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <input type="text"
-                               id="cantidad"
-                               class="form-control"
-                               onblur="CalculoTotal()"
-                               placeholder="Ej: 6">
+                        <input type="text" id="cantidad"class="form-control"onblur="CalculoTotal()"placeholder="Ej: 6">
                     </div>
 
 
-                    <!-- Total -->
+                    
                     <div class="col-md-4">
-                        <label for="total" class="form-label">
-                            Total:
-                        </label>
+                        <label for="total" class="form-label">Total:</label>
                     </div>
 
                     <div class="col-md-8">
-                        <input type="text"
-                               id="total"
-                               class="form-control"
-                               disabled>
+                        <input type="text"id="total"class="form-control"disabled>
                     </div>
 
                 </div>
@@ -184,25 +99,13 @@
                
                 <div class="botones">
 
-                    <input id="btnAgregarVenta"
-                           class="btn btn-light"
-                           type="button"
-                           value="Agregar">
+                    <input id="btnAgregarVenta"class="btn btn-light"type="button"value="Agregar">
 
-                    <input id="btnModificarVenta"
-                           class="btn btn-light"
-                           type="button"
-                           value="Modificar">
+                    <input id="btnModificarVenta" class="btn btn-light"type="button"value="Modificar">
 
-                    <input id="btnEliminarVenta"
-                           class="btn btn-light"
-                           type="button"
-                           value="Eliminar">
+                    <input id="btnEliminarVenta"class="btn btn-light"type="button"value="Eliminar">
 
-                    <input id="btnLimpiarVenta"
-                           class="btn btn-light"
-                           type="button"
-                           value="Limpiar">
+                    <input id="btnLimpiarVenta"class="btn btn-light"type="button"value="Limpiar">
 
                 </div>
 
@@ -210,17 +113,9 @@
 
         </form>
 
-        <section class="listado">
+        <section class="listado"><label for="lista-ventas">Listado de Ventas Realizadas</label>
 
-            <label for="lista-ventas">
-                Listado de Ventas Realizadas
-            </label>
-
-            <select onclick="SeleccionarVenta()"
-                    id="lista-ventas"
-                    class="form-select"
-                    size="6">
-            </select>
+        <select onclick="SeleccionarVenta()"id="lista-ventas"class="form-select"size="6"></select>
 
         </section>
 
