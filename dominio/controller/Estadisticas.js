@@ -1,115 +1,62 @@
 
-//#region Metodos de Estadísticas
-const CargoDatosEstadisticas = () => {
+import { Memoria } from '../memoria.js';
+
+export function initEstadisticas() {
     const LaMemoria = new Memoria();
+    let ventas = LaMemoria.leer('ventas');
+    let catalogos = LaMemoria.leer('catalogos');
+    let vendedores = LaMemoria.leer('vendedores');
 
-    ventas = LaMemoria.leer('ventas');
-    catalogos = LaMemoria.leer('catalogos');
-    vendedores = LaMemoria.leer('vendedores');
+    if (!ventas) ventas = [];
+    if (!catalogos) catalogos = [];
+    if (!vendedores) vendedores = [];
 
-    if (!ventas) {
-        ventas = [];
-    }
+    const totalRecaudado = document.getElementById('totalRecaudado');
+    const masVendido = document.getElementById('masVendido');
+    const mejorVendedor = document.getElementById('mejorVendedor');
+    const listaStock = document.getElementById('catalogos-con-stock');
 
-    if (!catalogos) {
-        catalogos = [];
-    }
+    if (!totalRecaudado || !masVendido || !mejorVendedor || !listaStock) return;
 
-    if (!vendedores) {
-        vendedores = [];
-    }
-    
-    TotalRecaudado();
-    CatalogoMasVendido();
-    MejorVendedor();
-    CatalogosConStock();
-};
-
-
-const TotalRecaudado = () => {
     let total = 0;
-
     for (const unaVenta of ventas) {
-        total = total + unaVenta.total;
+        total += Number(unaVenta.total || 0);
     }
+    totalRecaudado.value = total;
 
-    document.getElementById('totalRecaudado').value = total;
-};
-
-
-const CatalogosConStock = () => {
-    let lista = document.getElementById('catalogos-con-stock').options;
-    lista.length = 0;
-
-    for (const objCatalogo of catalogos) {
-        if (objCatalogo.stock > 0) {
-
-            let texto = '' + objCatalogo.codigo +
-                ' : Nombre: ' + objCatalogo.nombre +
-                ' - Precio: ' + objCatalogo.precio +
-                ' - Stock: ' + objCatalogo.stock;
-
-            let elemento = new Option(
-                texto,
-                objCatalogo.codigo
-            );
-
-            lista.add(elemento);
-        }
-    }
-};
-
-
-const CatalogoMasVendido = () => {
     let mayor = 0;
     let objMayor = null;
-
     for (const unCatalogo of catalogos) {
         let cantVendidos = unCatalogo.cantVendidos || 0;
-
         if (cantVendidos > mayor) {
             mayor = cantVendidos;
             objMayor = unCatalogo;
         }
     }
+    masVendido.value = objMayor
+        ? `${objMayor.nombre} con ${(objMayor.cantVendidos || 0)} unidades`
+        : 'Sin ventas';
 
-    if (objMayor) {
-        document.getElementById('masVendido').value =
-            objMayor.nombre +
-            " con " +
-            (objMayor.cantVendidos || 0) +
-            " unidades";
-    } else {
-        document.getElementById('masVendido').value =
-            'Sin ventas';
-    }
-};
-
-
-const MejorVendedor = () => {
-    let mayor = 0;
-    let objMayor = null;
-
+    mayor = 0;
+    objMayor = null;
     for (const unVendedor of vendedores) {
         let cantVentas = unVendedor.cantVentas || 0;
-
         if (cantVentas > mayor) {
             mayor = cantVentas;
             objMayor = unVendedor;
         }
     }
+    mejorVendedor.value = objMayor
+        ? `${objMayor.nombre} ${(objMayor.cantVentas || 0)} ventas`
+        : 'Sin ventas';
 
-    if (objMayor) {
-        document.getElementById('mejorVendedor').value =
-            objMayor.nombre +
-            "  " +
-            (objMayor.cantVentas || 0) +
-            " ventas";
-    } else {
-        document.getElementById('mejorVendedor').value =
-            'Sin ventas';
+    let lista = listaStock.options;
+    lista.length = 0;
+    for (const objCatalogo of catalogos) {
+        if (objCatalogo.stock > 0) {
+            const texto = `${objCatalogo.codigo} : Nombre: ${objCatalogo.nombre} - Precio: ${objCatalogo.precio} - Stock: ${objCatalogo.stock}`;
+            lista.add(new Option(texto, objCatalogo.codigo));
+        }
     }
-};
+}
 
-
-//#endregion

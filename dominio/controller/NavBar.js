@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+export function initNavBar() {
     const toggle = document.querySelector('.topnav .icon');
     const menu = document.getElementById('myLinks');
 
@@ -9,4 +9,5 @@ document.addEventListener('DOMContentLoaded', () => {
         const isOpen = menu.style.display === 'block';
         menu.style.display = isOpen ? 'none' : 'block';
     });
-});
+}
+
