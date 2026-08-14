@@ -8,16 +8,53 @@
      <script type="module" src="dominio/controller/CatalogoABM.js"></script>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body class="bodyc">  
-<a class="linksCatalogo btn btn-success" href="index.html">Volver</a>
+<body class="bodyc">
+    <header>
+        <nav class="barra">
+            <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria">
 
-  <header>
- 
-    <h1>FrutaManía</h1>
-   <h2>ABM Catalogo</h2>
- </header>
+            <div class="menu center">
+                <h1 style="color: white;">FrutaManía</h1>
+                <div class="menu-links desktop-menu">
+                    <a class="links" href="index.html">Inicio</a>
+                    <a class="links" href="catalogo.html">Catalogo</a>
+                    <a class="links" href="vendedores.html">Vendedores</a>
+                    <a class="links" href="ventas.html">Ventas</a>
+                </div>
+            </div>
+
+            <div class="mobile-menu">
+                <div class="topnav">
+                    <a href="index.html" class="active">Inicio</a>
+                    <div id="myLinks">
+                        <a href="catalogo.html">Catalogo</a>
+                        <a href="vendedores.html">Vendedores</a>
+                        <a href="ventas.html">Ventas</a>
+                    </div>
+                    <a href="#" class="icon" aria-label="Abrir menú">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="clima" aria-live="polite">
+                <div class="clima-principal">
+                    <span class="icono">🌤️</span>
+                    <div>
+                        <small>Colonia</small>
+                        <strong>--°C</strong>
+                    </div>
+                </div>
+                <div class="clima-datos">
+                    <span>Sensación: --°C</span>
+                    <span>Humedad: --%</span>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 <main class="contenedor">
         <form id="catalogo">
@@ -89,6 +126,9 @@
         <div id="contenedorCatalogo" class="tabla-Catalgo"></div>
 
     </main>
+
+    <script type="module" src="dominio/controller/IndexController.js"></script>
+    <script type="module" src="dominio/controller/CatalogoABM.js"></script>
 
     </body>
 </html>
