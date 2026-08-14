@@ -1,7 +1,14 @@
 import { Catalogo } from "../clases/catalogo.js";
 import { Memoria } from "../memoria.js";
+import { initNavBar } from './NavBar.js';
+import { initClima } from './Clima.js';
 
 let catalogos = [];
+
+const inicializarInterfazCatalogo = () => {
+    initNavBar();
+    initClima();
+};
 
 //#region Metodos de catalogos
 
@@ -256,6 +263,8 @@ document.getElementById("btnModificarCatalogo")
 
 document.getElementById("btnEliminarCatalogo")
     .addEventListener("click", EliminarCatalogo);
+
+document.addEventListener('DOMContentLoaded', inicializarInterfazCatalogo);
 
 document.getElementById("btnLimpiarCatalogo")
     .addEventListener("click", LimpiarCatalogo);

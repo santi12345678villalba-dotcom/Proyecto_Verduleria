@@ -4,20 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CATALOGO</title>
-    <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png"> 
-     <script type="module" src="dominio/controller/CatalogoABM.js"></script>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Ventas</title>
+    <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png">
+    <script type="module" src="dominio/controller/VentasABM.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body class="bodyc">  
-<a class="linksCatalogos btn btn-success" href="index.html">Volver</a>
+<body class="bodyven">
+    <header>
+        <nav class="barra">
+            <img class="logo" src="imagenes/logo.png" alt="Logo Verduleria">
 
-  <header>
-    <h1>FrutaManía</h1>
-   <h2>ABM Ventas</h2>
- </header>
+            <div class="menu center">
+                <h1 style="color: white;">FrutaManía</h1>
+                <div class="menu-links desktop-menu">
+                    <a class="links" href="index.html">Inicio</a>
+                    <a class="links" href="catalogo.html">Catalogo</a>
+                    <a class="links" href="vendedores.html">Vendedores</a>
+                    <a class="links" href="ventas.html">Ventas</a>
+                </div>
+            </div>
+
+            <div class="mobile-menu">
+                <div class="topnav">
+                    <a href="index.html" class="active">Inicio</a>
+                    <div id="myLinks">
+                        <a href="catalogo.html">Catalogo</a>
+                        <a href="vendedores.html">Vendedores</a>
+                        <a href="ventas.html">Ventas</a>
+                    </div>
+                    <a href="#" class="icon" aria-label="Abrir menú">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="clima" aria-live="polite">
+                <div class="clima-principal">
+                    <span class="icono">🌤️</span>
+                    <div>
+                        <small>Colonia</small>
+                        <strong>--°C</strong>
+                    </div>
+                </div>
+                <div class="clima-datos">
+                    <span>Sensación: --°C</span>
+                    <span>Humedad: --%</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <header>
+        <h1>FrutaManía</h1>
+        <h2>ABM Ventas</h2>
+    </header>
 
     <main class="contenedor">
 
@@ -62,7 +105,7 @@
                     </div>
 
                     <div class="col-md-8">
-                        <select id="codigo-catalogo"class="form-select"onchange="CargarPrecioCatalogo()"></select>
+                        <select id="codigo-catalogo" class="form-select"></select>
                     </div>
 
                     <div class="col-md-4">
@@ -80,7 +123,7 @@
                     </div>
 
                     <div class="col-md-8">
-                        <input type="text" id="cantidad"class="form-control"onblur="CalculoTotal()"placeholder="Ej: 6">
+                        <input type="number" id="cantidad" class="form-control" min="1" placeholder="Ej: 6">
                     </div>
 
 
@@ -115,7 +158,7 @@
 
         <section class="listado"><label for="lista-ventas">Listado de Ventas Realizadas</label>
 
-        <select onclick="SeleccionarVenta()"id="lista-ventas"class="form-select"size="6"></select>
+        <select id="lista-ventas" class="form-select" size="6"></select>
 
         </section>
 

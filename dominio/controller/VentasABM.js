@@ -1,9 +1,16 @@
 import { Ventas } from "../clases/ventas.js";
 import { Memoria } from "../memoria.js";
+import { initNavBar } from './NavBar.js';
+import { initClima } from './Clima.js';
 
 let ventas = [];
 let catalogos = [];
 let vendedores = [];
+
+const inicializarInterfazVentas = () => {
+    initNavBar();
+    initClima();
+};
 
 
 //#region Metodos de Ventas
@@ -164,14 +171,15 @@ const DevolverCantidadVentas = (pCodigoVendedor) => {
 
 
 const CalculoTotal = () => {
-    let precio = document.getElementById('precio-catalogo').value;
-    let cantidad = document.getElementById('cantidad').value;
-    let total = 0;
+    const precio = Number(document.getElementById('precio-catalogo').value || 0);
+    const cantidad = Number(document.getElementById('cantidad').value || 0);
 
-    if (cantidad > 0) {
-        total = precio * cantidad;
-        document.getElementById('total').value = total;
+    if (cantidad > 0 && precio > 0) {
+        document.getElementById('total').value = (precio * cantidad).toString();
+        return;
     }
+
+    document.getElementById('total').value = "";
 };
 
 
@@ -603,8 +611,13 @@ document.getElementById("btnModificarVenta").addEventListener("click", Modificar
 document.getElementById("btnEliminarVenta").addEventListener("click", EliminarVenta);
 
 document.getElementById("btnLimpiarVenta").addEventListener("click", LimpiarVenta);
-
+document.getElementById("codigo-catalogo").addEventListener("change", () => {
+    CargarPrecioCatalogo();
+    CalculoTotal();
+});
+document.getElementById("cantidad").addEventListener("input", CalculoTotal);
 document.getElementById("lista-ventas").addEventListener("change", SeleccionarVenta);
 
+document.addEventListener('DOMContentLoaded', inicializarInterfazVentas);
 
 CargoDatosVentas();

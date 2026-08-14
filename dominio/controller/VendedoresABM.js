@@ -1,7 +1,14 @@
 import { Vendedor } from "../clases/vendedor.js";
 import { Memoria } from "../memoria.js";
+import { initNavBar } from './NavBar.js';
+import { initClima } from './Clima.js';
 
 let vendedores = [];
+
+const inicializarInterfazVendedor = () => {
+    initNavBar();
+    initClima();
+};
 
 
 //#region Metodos de Vendedores
@@ -183,5 +190,7 @@ document.getElementById("btnLimpiarVendedor")
 
 document.getElementById("lista-vendedores")
     .addEventListener("change", SeleccionarVendedor);
+
+document.addEventListener('DOMContentLoaded', inicializarInterfazVendedor);
 
 CargoDatosVendedor();
