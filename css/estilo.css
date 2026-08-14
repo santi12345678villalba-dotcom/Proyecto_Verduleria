@@ -70,13 +70,6 @@ form {
     box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
 }
 
-.campos {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 15px;
-    align-items: center;
-}
-
 label {
     display: block;
     text-align: center;
@@ -106,6 +99,7 @@ input:disabled {
 
 /*BOTONES*/
 
+
 .botones {
     display: flex;
     justify-content: center;
@@ -128,15 +122,6 @@ button {
 button:hover {
     background: #f1c40f;
     color: white;
-}
-
-.btn_agregar,
-.btn_modificar,
-.btn_eliminar,
-.btn_limpiar {
-    background: white;
-    color: #0f6d1d;
-    border: 2px solid #0f6d1d;
 }
 
 

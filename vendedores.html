@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendedores</title>
     <link rel="icon" href="imagenes/Logoverduleria.png" type="image/png">
-    <script type="module" src="dominio/controller/VendedoresABM.js" ></script>
+    <script type="module" src="dominio/controller/VendedoresABM.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/estilo.css">
+
+
 </head>
-<body  class="bodyven">
-<a class="links" href="index.html">Volver</a>
 
-<header>
- <h1>FrutaManía</h1> 
-<h2>ABM Vendedores</h2>
-</header>
+<body class="bodyven">
 
+    <a class="linksCatalogo btn btn-success" href="index.html">Volver</a>
+    <header>
+        <h1>FrutaManía</h1>
+        <h2>ABM Vendedores</h2>
+    </header>
 
-<main>
+    <main class="contenedor">
+
         <form id="vendedores">
+
             <section class="vendedores">
+
                 <h3>Datos del vendedor</h3>
-                <div class="campos">
-                    <label for="codigo">Codigo:</label>
-                    <input type="text" id="codigo" placeholder="Ej: 34">
-                    
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" placeholder="Ej: Luis Fernandez">
-                    
 
-                    <label for="cedula">cedula:</label>
-                    <input type="text" id="cedula" placeholder="Ej: 41663215">
+                <div class="row g-3 align-items-center">
+
+                    <div class="col-md-4">
+                        <label for="codigo" class="form-label">Código:</label>
+                    </div>
+
+                    <div class="col-md-8">
+                        <input type="text" id="codigo"class="form-control"placeholder="Ej: 34">
+                    </div>
+
+                    
+                    <div class="col-md-4">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                    </div>
+
+                    <div class="col-md-8">
+                        <input type="text"id="nombre"class="form-control" placeholder="Ej: Luis Fernandez">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="cedula" class="form-label">Cédula:</label>
+                    </div>
+
+                    <div class="col-md-8">
+                        <input type="text" id="cedula"class="form-control"placeholder="Ej: 41663215"></div>
 
                 </div>
 
-                <div class="botones">                                                       
-                    <input id="btnAgregarVendedor" class="btn_agregar" type="button"  value="Agregar"  >
-                    <input id="btnModificarVendedor" class="btn_modificar" type="button" value="Modificar" >
-                    <input id="btnEliminarVendedor" class="btn_eliminar" type="button" value="Eliminar" >
-                    <input id="btnLimpiarVendedor" class="btn_limpiar" type="button" value="Limpiar" >
+               
+                <div class="botones">
+
+                    <input id="btnAgregarVendedor"class="btn btn-light border-success" type="button" value="Agregar">
+
+                    <input id="btnModificarVendedor"class="btn btn-light border-success" type="button" value="Modificar">
+
+                    <input id="btnEliminarVendedor" class="btn btn-light border-success" type="button" value="Eliminar">
+
+                    <input id="btnLimpiarVendedor" class="btn btn-light border-success" type="button" value="Limpiar">
+
                 </div>
+
             </section>
+
         </form>
 
         <section class="listado">
-           <label for="lista-vendedores">Lista de vendedores</label>
-           <select id="lista-vendedores"size="6" onclick="SeleccionarVendedor()"></select>
-        </section>
-</main>
 
+            <label for="lista-vendedores"> Lista de vendedores</label>
+
+            <select id="lista-vendedores" class="form-select" size="6" onclick="SeleccionarVendedor()"> </select>
+
+        </section>
+
+    </main>
 
 </body>
 </html>
