@@ -3,18 +3,19 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #eef6ee;
+
+    background-color: #eef6ee;
     background-image: url("../imagenes/fondo.png");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-.bodyc,
-.bodyven,
-.bodyve {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-image: url("../imagenes/fondo.png");
+* {
+    box-sizing: border-box;
 }
-
 
 /*ENCABEZADO*/
 
@@ -44,9 +45,17 @@ h1 {
 
 .logo2 {
     width: 500px;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
-
+.logosection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
 /*CONTENEDORES*/
 
 .contenedor {
@@ -311,93 +320,7 @@ button:hover {
 
 
 
-@media (max-width: 768px) {
-    
-    body {
-        padding: 12px 0 24px;
-    }
 
-    header {
-        padding: 0 10px;
-    }
-
-    .barra {
-        max-width: 390px;
-        margin: 0 auto;
-        padding: 12px 14px;
-        border-radius: 28px;
-        background: rgba(46, 125, 50, 0.98);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
-        gap: 10px;
-    }
-
-    .logo {
-        width: 70px;
-    }
-
-    .menu {
-        display: none;
-    }
-
-    .desktop-menu {
-        display: none;
-    }
-
-    .mobile-menu {
-        display: block;
-        flex: 1;
-    }
-
-    .topnav {
-        min-width: 160px;
-    }
-
-    .clima {
-        min-width: 120px;
-        padding: 8px 10px;
-        border-radius: 16px;
-    }
-
-    .clima strong {
-        font-size: 14px;
-    }
-
-    .clima small,
-    .clima-datos span {
-        font-size: 10px;
-    }
-
-    .menu2 {
-        display: flex;
-        flex-direction: column;
-
-    }
-
-    .pedidos,
-    .estadisticas {
-        width: min(100%, 360px);
-        margin: 0 auto 18px;
-    }
-
-    .logo2 {
-        /* display: block; */
-        width: 150px;
-        height: 150px;
-       align-items: center;
-    }
-    .logosection {
-        
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px 0;
-    }
-
-    .campos {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-}
 
 .menu2 {
     display: flex;
@@ -460,6 +383,7 @@ footer {
     margin-top: 10px;
     padding: 15px 25px;
     text-align: center;
+    background-color: transparent;
 }
 
 footer h2 {
@@ -468,4 +392,89 @@ footer h2 {
 
 footer p {
     margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 12px 0 24px;
+    }
+
+    header {
+        padding: 0 10px;
+    }
+
+    .barra {
+        width: calc(100% - 20px);
+        max-width: 390px;
+        margin: 0 auto;
+        padding: 12px 14px;
+        border-radius: 28px;
+        gap: 10px;
+    }
+
+    .logo {
+        width: 70px;
+    }
+
+    .logo2 {
+        width: 350px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .topnav {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .clima {
+        min-width: 0;
+        padding: 8px 10px;
+        border-radius: 16px;
+    }
+
+    .menu2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        gap: 18px;
+    }
+
+    .pedidos,
+    .estadisticas {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    form {
+        width: calc(100% - 24px);
+        padding: 20px;
+    }
+
+    .listado {
+        width: calc(100% - 24px);
+        padding: 20px;
+    }
+
+    .campos {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 }
