@@ -278,7 +278,7 @@ const AgregarVenta = () => {
     );
 
     if (cantidad <= 0) {
-        alert("La cantidad debe ser mayor a 0!");
+        MostrarModal("La cantidad debe ser mayor a 0!");
         return;
     }
 
@@ -286,7 +286,7 @@ const AgregarVenta = () => {
         if (unCatalogo.codigo == codigoCatalogo) {
 
             if (cantidad > unCatalogo.stock) {
-                alert(
+                MostrarModal(
                     "La cantidad ingresada excede el stock disponible!, quedan " +
                     unCatalogo.stock +
                     " unidades en stock de " +
@@ -305,12 +305,12 @@ const AgregarVenta = () => {
         codigoVendedor == "" ||
         codigoCatalogo == ""
     ) {
-        alert("Debe ingresar todos los campos!");
+        MostrarModal("Debe ingresar todos los campos!");
         return;
     }
 
     if (isNaN(cantidad) || isNaN(total)) {
-        alert("Los valores ingresados no son correctos!");
+        MostrarModal("Los valores ingresados no son correctos!");
         return;
     }
 
@@ -339,7 +339,7 @@ const AgregarVenta = () => {
     LaMemoria.escribir('catalogos', catalogos);
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Venta añadida correctamente!");
+    MostrarModal("Venta añadida correctamente!");
 
     InicializarVenta();
     ListarVentas();
@@ -398,7 +398,7 @@ const ModificarVenta = () => {
 
 
     if (cantidad <= 0) {
-        alert("La cantidad debe ser mayor a 0!");
+        MostrarModal("La cantidad debe ser mayor a 0!");
         return;
     }
 
@@ -409,13 +409,13 @@ const ModificarVenta = () => {
         codigoVendedor == "" ||
         codigoCatalogo == ""
     ) {
-        alert("Debe ingresar todos los campos!");
+        MostrarModal("Debe ingresar todos los campos!");
         return;
     }
 
 
     if (isNaN(cantidad) || isNaN(total)) {
-        alert("Los valores ingresados no son correctos!");
+        MostrarModal("Los valores ingresados no son correctos!");
         return;
     }
 
@@ -423,7 +423,7 @@ const ModificarVenta = () => {
     let unaVenta = BuscarVenta(codigoSeleccionado);
 
     if (!unaVenta) {
-        alert("No se encontró la venta seleccionada!");
+        MostrarModal("No se encontró la venta seleccionada!");
         return;
     }
 
@@ -431,7 +431,7 @@ const ModificarVenta = () => {
     let unCatalogo = BuscarCatalogo(codigoCatalogo);
 
     if (!unCatalogo) {
-        alert("Debe seleccionar un catálogo válido!");
+        MostrarModal("Debe seleccionar un catálogo válido!");
         return;
     }
 
@@ -439,7 +439,7 @@ const ModificarVenta = () => {
     let unVendedor = BuscarVendedor(codigoVendedor);
 
     if (!unVendedor) {
-        alert("Debe seleccionar un vendedor válido!");
+        MostrarModal("Debe seleccionar un vendedor válido!");
         return;
     }
 
@@ -452,7 +452,7 @@ const ModificarVenta = () => {
 
 
     if (cantidad > stockDisponible) {
-        alert(
+        MostrarModal(
             "La cantidad ingresada excede el stock disponible!, quedan " +
             stockDisponible +
             " unidades en stock de " +
@@ -508,7 +508,7 @@ const ModificarVenta = () => {
     LaMemoria.escribir('catalogos', catalogos);
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Venta modificada correctamente!");
+    MostrarModal("Venta modificada correctamente!");
 
     InicializarVenta();
     ListarVentas();
@@ -536,7 +536,7 @@ const EliminarVenta = () => {
 
     // Validación
     if (codigoSeleccionado == "") {
-        alert("Debe seleccionar una Venta!");
+        MostrarModal("Debe seleccionar una Venta!");
         return;
     }
 
@@ -583,7 +583,7 @@ const EliminarVenta = () => {
     LaMemoria.escribir('vendedores', vendedores);
 
 
-    alert("Venta eliminada correctamente!");
+    MostrarModal("Venta eliminada correctamente!");
 
     InicializarVenta();
     ListarVentas();
@@ -595,7 +595,7 @@ const LimpiarVenta = () => {
 
     LaMemoria.escribir('ventas', ventas);
 
-    alert("Cajas limpiadas correctamente!");
+    MostrarModal("Cajas limpiadas correctamente!");
 
     InicializarVenta();
 };

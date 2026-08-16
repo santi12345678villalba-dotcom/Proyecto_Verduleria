@@ -1,0 +1,99 @@
+/* Fondo oscuro que cubre toda la pantalla */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    /* Centrar el contenido */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Caja del modal */
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+
+    animation: aparecer 0.3s ease;
+}
+
+/* Animación */
+@keyframes aparecer {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Encabezado */
+.modal-header {
+    background-color: #5cb85c;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 15px 15px 0 0;
+}
+
+/* Título */
+.modal-header h2 {
+    margin: 0;
+}
+
+/* Botón X */
+.close {
+    float: right;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #222;
+}
+
+/* Cuerpo */
+.modal-body {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.modal-body p {
+    margin: 0;
+    font-size: 17px;
+}
+
+/* Pie */
+.modal-footer {
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+/* Botón aceptar */
+.btn-modal {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn-modal:hover {
+    background-color: #449d44;
+}

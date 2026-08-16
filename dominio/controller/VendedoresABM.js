@@ -34,7 +34,7 @@ const AgregarVendedor = () => {
 
     // Debemos agregar validacion para las cajas de texto que no vengan vacías
     if (cedula == "" || nombre == "" || codigo == "") {
-        alert("Debe ingresar todos los campos para poder agregar el vendedor!");
+        MostrarModal("Debe ingresar todos los campos para poder agregar el vendedor!");
         return;
     }
 
@@ -44,7 +44,7 @@ const AgregarVendedor = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Vendedor añadido correctamente!");
+    MostrarModal("Vendedor añadido correctamente!");
 
     InicializarVendedor();
     ListarVendedores();
@@ -101,7 +101,7 @@ const ModificarVendedor = () => {
 
     // Debemos agregar validacion para las cajas de texto que no vengan vacías
     if (codigoSeleccionado == "" || nombre == "" || cedula == "") {
-        alert("Debe ingresar todos los campos para modificar el vendedor!");
+        MostrarModal("Debe ingresar todos los campos para modificar el vendedor!");
         return;
     }
 
@@ -114,7 +114,7 @@ const ModificarVendedor = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Vendedor modificado correctamente!");
+    MostrarModal("Vendedor modificado correctamente!");
 
     InicializarVendedor();
     ListarVendedores();
@@ -139,7 +139,7 @@ const EliminarVendedor = () => {
 
     // Debemos agregar validacion para las cajas de texto que no vengan vacías
     if (codigoSeleccionado == "") {
-        alert("Debe seleccionar un Vendedor!");
+        MostrarModal("Debe seleccionar un Vendedor!");
         return;
     }
 
@@ -156,7 +156,7 @@ const EliminarVendedor = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Vendedor eliminado correctamente!");
+    MostrarModal("Vendedor eliminado correctamente!");
 
     InicializarVendedor();
     ListarVendedores();
@@ -168,7 +168,7 @@ const LimpiarVendedor = () => {
 
     LaMemoria.escribir('vendedores', vendedores);
 
-    alert("Cajas limpiadas correctamente!");
+    MostrarModal("Cajas limpiadas correctamente!");
 
     InicializarVendedor();
 };

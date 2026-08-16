@@ -109,13 +109,13 @@ const AgregarCatalogo = () => {
 
     // Validación de campos vacíos
     if (codigo == "" || nombre == "" || descripcion == "") {
-        alert("Debe ingresar todos los campos para poder agregar el catalogo!");
+        MostrarModal("Debe ingresar todos los campos para poder agregar el catalogo!");
         return;
     }
 
     // Validación de números
     if (isNaN(precio) || isNaN(stock)) {
-        alert("Los valores ingresados no son correctos!");
+        MostrarModal("Los valores ingresados no son correctos!");
         return;
     }
 
@@ -133,7 +133,7 @@ const AgregarCatalogo = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('catalogos', catalogos);
 
-    alert("Catalogo añadido correctamente!");
+    MostrarModal("Catalogo añadido correctamente!");
 
     InicializarCatalogo();
     ListarCatalogos();
@@ -170,13 +170,13 @@ const ModificarCatalogo = () => {
 
     // Validación de campos vacíos
     if (codigoSeleccionado == "" || nombre == "" || descripcion == "") {
-        alert("Debe ingresar todos los campos para modificar el catalogo!");
+        MostrarModal("Debe ingresar todos los campos para modificar el catalogo!");
         return;
     }
 
     // Validación de números
     if (isNaN(precio) || isNaN(stock)) {
-        alert("Los valores ingresados no son correctos!");
+        MostrarModal("Los valores ingresados no son correctos!");
         return;
     }
 
@@ -192,7 +192,7 @@ const ModificarCatalogo = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('catalogos', catalogos);
 
-    alert("Catalogo modificado correctamente!");
+    MostrarModal("Catalogo modificado correctamente!");
 
     InicializarCatalogo();
     ListarCatalogos();
@@ -218,7 +218,7 @@ const EliminarCatalogo = () => {
 
     // Validación
     if (codigoSeleccionado == "") {
-        alert("Debe seleccionar un catalogo!");
+        MostrarModal("Debe seleccionar un catalogo!");
         return;
     }
 
@@ -235,7 +235,7 @@ const EliminarCatalogo = () => {
     const LaMemoria = new Memoria();
     LaMemoria.escribir('catalogos', catalogos);
     
-    alert("Catalogo eliminado correctamente!");
+    MostrarModal("Catalogo eliminado correctamente!");
 
     InicializarCatalogo();
     ListarCatalogos();
@@ -248,7 +248,7 @@ const LimpiarCatalogo = () => {
 
     LaMemoria.escribir('catalogos', catalogos);
 
-    alert("Cajas limpiadas correctamente!");
+    MostrarModal("Cajas limpiadas correctamente!");
 
     InicializarCatalogo();
 };
