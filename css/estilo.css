@@ -97,6 +97,14 @@ select {
     background: white;
 }
 
+input.campo-invalido,
+textarea.campo-invalido,
+select.campo-invalido {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, .15);
+}
+
 form select {
     width: 100%;
 }

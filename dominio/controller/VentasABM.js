@@ -7,6 +7,58 @@ let ventas = [];
 let catalogos = [];
 let vendedores = [];
 
+const marcarCampoVenta = (id, esInvalido) => {
+    let campo = document.getElementById(id);
+
+    if (esInvalido) {
+        campo.classList.add("campo-invalido");
+    } else {
+        campo.classList.remove("campo-invalido");
+    }
+};
+
+const validarCamposVenta = (marcarCamposVacios = false) => {
+    let codigo = document.getElementById("codigo").value;
+    let fecha = document.getElementById("fecha").value;
+    let vendedor = document.getElementById("codigo-vendedor").value;
+    let catalogo = document.getElementById("codigo-catalogo").value;
+    let cantidad = document.getElementById("cantidad").value;
+    let codigoInvalido = false;
+    let fechaInvalida = false;
+    let vendedorInvalido = false;
+    let catalogoInvalido = false;
+    let cantidadInvalida = false;
+
+    if (codigo == "" && marcarCamposVacios) codigoInvalido = true;
+    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) codigoInvalido = true;
+    if (fecha == "" && marcarCamposVacios) fechaInvalida = true;
+    if (fecha != "" && isNaN(Date.parse(fecha))) fechaInvalida = true;
+    if (vendedor == "" && marcarCamposVacios) vendedorInvalido = true;
+    if (catalogo == "" && marcarCamposVacios) catalogoInvalido = true;
+    if (cantidad == "" && marcarCamposVacios) cantidadInvalida = true;
+    if (cantidad != "" && (isNaN(cantidad) || Number(cantidad) <= 0)) cantidadInvalida = true;
+
+    marcarCampoVenta("codigo", codigoInvalido);
+    marcarCampoVenta("fecha", fechaInvalida);
+    marcarCampoVenta("codigo-vendedor", vendedorInvalido);
+    marcarCampoVenta("codigo-catalogo", catalogoInvalido);
+    marcarCampoVenta("cantidad", cantidadInvalida);
+
+    if (codigoInvalido || fechaInvalida || vendedorInvalido || catalogoInvalido || cantidadInvalida) {
+        return false;
+    }
+
+    return true;
+};
+
+const limpiarMarcasVenta = () => {
+    const campos = ["codigo", "fecha", "codigo-vendedor", "codigo-catalogo", "cantidad"];
+
+    for (let campo of campos) {
+        marcarCampoVenta(campo, false);
+    }
+};
+
 const inicializarInterfazVentas = () => {
     initNavBar();
     initClima();
@@ -237,6 +289,8 @@ const InicializarVenta = () => {
     document.getElementById("cantidad").value = "";
     document.getElementById("total").value = "";
 
+    limpiarMarcasVenta();
+
     // Pongo el foco en la caja de texto codigo
     document.getElementById("codigo").focus();
 };
@@ -265,6 +319,11 @@ const BuscarVendedor = (pCodigo) => {
 
 
 const AgregarVenta = () => {
+    if (!validarCamposVenta(true)) {
+        MostrarModal("Debe completar correctamente los campos de la venta!");
+        return;
+    }
+
     // Leo los datos ingresados de las cajas de texto
     let codigo = document.getElementById("codigo").value;
     let fecha = document.getElementById("fecha").value;
@@ -309,6 +368,13 @@ const AgregarVenta = () => {
         return;
     }
 
+    for (let objVenta of ventas) {
+        if (objVenta.codigo == codigo) {
+            MostrarModal("Ya existe una venta con ese código!");
+            return;
+        }
+    }
+
     if (isNaN(cantidad) || isNaN(total)) {
         MostrarModal("Los valores ingresados no son correctos!");
         return;
@@ -316,6 +382,11 @@ const AgregarVenta = () => {
 
     let unCatalogo = BuscarCatalogo(codigoCatalogo);
     let unVendedor = BuscarVendedor(codigoVendedor);
+
+    if (unCatalogo == null || unVendedor == null) {
+        MostrarModal("Debe seleccionar un catálogo y un vendedor válidos!");
+        return;
+    }
 
     let unaVenta = new Ventas(
         codigo,
@@ -378,6 +449,11 @@ const SeleccionarVenta = () => {
 
 
 const ModificarVenta = () => {
+    if (!validarCamposVenta(true)) {
+        MostrarModal("Debe completar correctamente los campos de la venta!");
+        return;
+    }
+
     let codigoSeleccionado =
         document.getElementById("lista-ventas").value;
 
@@ -410,6 +486,11 @@ const ModificarVenta = () => {
         codigoCatalogo == ""
     ) {
         MostrarModal("Debe ingresar todos los campos!");
+        return;
+    }
+
+    if (isNaN(Date.parse(fecha))) {
+        MostrarModal("La fecha ingresada no es válida!");
         return;
     }
 
@@ -614,8 +695,13 @@ document.getElementById("btnLimpiarVenta").addEventListener("click", LimpiarVent
 document.getElementById("codigo-catalogo").addEventListener("change", () => {
     CargarPrecioCatalogo();
     CalculoTotal();
+    validarCamposVenta();
 });
 document.getElementById("cantidad").addEventListener("input", CalculoTotal);
+document.getElementById("codigo").addEventListener("input", validarCamposVenta);
+document.getElementById("fecha").addEventListener("change", validarCamposVenta);
+document.getElementById("codigo-vendedor").addEventListener("change", validarCamposVenta);
+document.getElementById("cantidad").addEventListener("input", validarCamposVenta);
 document.getElementById("lista-ventas").addEventListener("change", SeleccionarVenta);
 
 document.addEventListener('DOMContentLoaded', inicializarInterfazVentas);

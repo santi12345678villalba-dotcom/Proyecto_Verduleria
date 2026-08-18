@@ -5,6 +5,47 @@ import { initClima } from './Clima.js';
 
 let vendedores = [];
 
+const marcarCampoVendedor = (id, esInvalido) => {
+    let campo = document.getElementById(id);
+
+    if (esInvalido) {
+        campo.classList.add("campo-invalido");
+    } else {
+        campo.classList.remove("campo-invalido");
+    }
+};
+
+const validarCamposVendedor = (marcarCamposVacios = false) => {
+    let codigo = document.getElementById("codigo").value;
+    let nombre = document.getElementById("nombre").value;
+    let cedula = document.getElementById("cedula").value;
+    let codigoInvalido = false;
+    let nombreInvalido = false;
+    let cedulaInvalida = false;
+
+    if (codigo == "" && marcarCamposVacios) codigoInvalido = true;
+    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) codigoInvalido = true;
+    if (nombre == "" && marcarCamposVacios) nombreInvalido = true;
+    if (cedula == "" && marcarCamposVacios) cedulaInvalida = true;
+    if (cedula != "" && (isNaN(cedula) || Number(cedula) <= 0)) cedulaInvalida = true;
+
+    marcarCampoVendedor("codigo", codigoInvalido);
+    marcarCampoVendedor("nombre", nombreInvalido);
+    marcarCampoVendedor("cedula", cedulaInvalida);
+
+    if (codigoInvalido || nombreInvalido || cedulaInvalida) {
+        return false;
+    }
+
+    return true;
+};
+
+const limpiarMarcasVendedor = () => {
+    marcarCampoVendedor("codigo", false);
+    marcarCampoVendedor("nombre", false);
+    marcarCampoVendedor("cedula", false);
+};
+
 const inicializarInterfazVendedor = () => {
     initNavBar();
     initClima();
@@ -27,6 +68,11 @@ const CargoDatosVendedor = () => {
 
 
 const AgregarVendedor = () => {
+    if (!validarCamposVendedor(true)) {
+        MostrarModal("Debe completar correctamente los datos del vendedor!");
+        return;
+    }
+
     // Leo los datos ingresados de las cajas de texto
     let codigo = document.getElementById("codigo").value;
     let nombre = document.getElementById("nombre").value;
@@ -36,6 +82,13 @@ const AgregarVendedor = () => {
     if (cedula == "" || nombre == "" || codigo == "") {
         MostrarModal("Debe ingresar todos los campos para poder agregar el vendedor!");
         return;
+    }
+
+    for (let objVendedor of vendedores) {
+        if (objVendedor.codigo == codigo) {
+            MostrarModal("Ya existe un vendedor con ese código!");
+            return;
+        }
     }
 
     let unVendedor = new Vendedor(codigo, nombre, cedula);
@@ -85,6 +138,7 @@ const InicializarVendedor = () => {
     document.getElementById("codigo").value = "";
     document.getElementById("cedula").value = "";
     document.getElementById("nombre").value = "";
+    limpiarMarcasVendedor();
 
     // Pongo el foco en la caja de texto codigo
     document.getElementById("codigo").focus();
@@ -92,6 +146,11 @@ const InicializarVendedor = () => {
 
 
 const ModificarVendedor = () => {
+    if (!validarCamposVendedor(true)) {
+        MostrarModal("Debe completar correctamente los datos del vendedor!");
+        return;
+    }
+
     // Leo el codigo desde la linea seleccionada
     let codigoSeleccionado = document.getElementById("lista-vendedores").value;
 
@@ -107,6 +166,11 @@ const ModificarVendedor = () => {
 
     // Cargo el objeto vendedor desde la funcion buscar
     let unVendedor = BuscarVendedor(codigoSeleccionado);
+
+    if (unVendedor == null) {
+        MostrarModal("Debe seleccionar un vendedor válido!");
+        return;
+    }
 
     unVendedor.nombre = nombre;
     unVendedor.cedula = cedula;
@@ -190,6 +254,15 @@ document.getElementById("btnLimpiarVendedor")
 
 document.getElementById("lista-vendedores")
     .addEventListener("change", SeleccionarVendedor);
+
+document.getElementById("codigo")
+    .addEventListener("input", () => validarCamposVendedor(false));
+
+document.getElementById("nombre")
+    .addEventListener("input", () => validarCamposVendedor(false));
+
+document.getElementById("cedula")
+    .addEventListener("input", () => validarCamposVendedor(false));
 
 document.addEventListener('DOMContentLoaded', inicializarInterfazVendedor);
 

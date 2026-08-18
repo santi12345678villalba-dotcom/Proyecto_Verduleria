@@ -17,8 +17,8 @@ Eventos con JS | ✅ Ya no se usan solo handlers inline en las páginas principa
 Semana 1 - Refactorización
 Requisito | Lo que falta
 --- | ---
-JavaScript moderno | ❌ Se puede mejorar aún más con destructuring, mejor organización y limpieza
-Unificar variables globales | ❌ Faltaría centralizar configuración y estados comunes
+JavaScript moderno | ✅ Refactorizado con destructuring, const, funciones compartidas y limpieza de código
+Unificar variables globales | ✅ Estado, claves de LocalStorage y persistencia centralizados en globals.js
 
 Semana 2 - Interfaz Profesional
 Requisito | Lo que falta

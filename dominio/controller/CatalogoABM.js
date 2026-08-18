@@ -5,6 +5,46 @@ import { initClima } from './Clima.js';
 
 let catalogos = [];
 
+const marcarCampo = (id, esInvalido) => {
+    let campo = document.getElementById(id);
+
+    if (esInvalido) {
+        campo.classList.add("campo-invalido");
+    } else {
+        campo.classList.remove("campo-invalido");
+    }
+};
+
+const validarNumerosCatalogo = () => {
+    let codigo = document.getElementById("codigo").value;
+    let precio = document.getElementById("precio").value;
+    let stock = document.getElementById("stock").value;
+    let valido = true;
+
+    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) {
+        marcarCampo("codigo", true);
+        valido = false;
+    } else {
+        marcarCampo("codigo", false);
+    }
+
+    if (precio != "" && (isNaN(precio) || Number(precio) <= 0)) {
+        marcarCampo("precio", true);
+        valido = false;
+    } else {
+        marcarCampo("precio", false);
+    }
+
+    if (stock != "" && (isNaN(stock) || Number(stock) < 0)) {
+        marcarCampo("stock", true);
+        valido = false;
+    } else {
+        marcarCampo("stock", false);
+    }
+
+    return valido;
+};
+
 const inicializarInterfazCatalogo = () => {
     initNavBar();
     initClima();
@@ -99,6 +139,11 @@ const InicializarCatalogo = () => {
 
 
 const AgregarCatalogo = () => {
+    if (!validarNumerosCatalogo()) {
+        MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
+        return;
+    }
+
     // Leo los datos ingresados de las cajas de texto
     let foto = document.getElementById("foto").value;
     let codigo = document.getElementById("codigo").value;
@@ -113,9 +158,21 @@ const AgregarCatalogo = () => {
         return;
     }
 
+    for (let objCatalogo of catalogos) {
+        if (objCatalogo.codigo == codigo) {
+            MostrarModal("Ya existe un catálogo con ese código!");
+            return;
+        }
+    }
+
     // Validación de números
     if (isNaN(precio) || isNaN(stock)) {
         MostrarModal("Los valores ingresados no son correctos!");
+        return;
+    }
+
+    if (precio <= 0 || stock < 0) {
+        MostrarModal("El precio debe ser mayor a 0 y el stock no puede ser negativo!");
         return;
     }
 
@@ -158,6 +215,11 @@ const SeleccionarCatalogo = () => {
 
 
 const ModificarCatalogo = () => {
+    if (!validarNumerosCatalogo()) {
+        MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
+        return;
+    }
+
     // Leo el codigo desde la linea seleccionada
     let codigoSeleccionado = document.getElementById("lista-catalogos").value;
 
@@ -180,8 +242,18 @@ const ModificarCatalogo = () => {
         return;
     }
 
+    if (precio <= 0 || stock < 0) {
+        MostrarModal("El precio debe ser mayor a 0 y el stock no puede ser negativo!");
+        return;
+    }
+
     // Busco el catálogo
     let unCatalogo = BuscarCatalogo(codigoSeleccionado);
+
+    if (unCatalogo == null) {
+        MostrarModal("Debe seleccionar un catálogo válido!");
+        return;
+    }
 
     unCatalogo.foto = foto;
     unCatalogo.nombre = nombre;
@@ -271,5 +343,14 @@ document.getElementById("btnLimpiarCatalogo")
 
 document.getElementById("lista-catalogos")
     .addEventListener("change", SeleccionarCatalogo);
+
+document.getElementById("codigo")
+    .addEventListener("input", validarNumerosCatalogo);
+
+document.getElementById("precio")
+    .addEventListener("input", validarNumerosCatalogo);
+
+document.getElementById("stock")
+    .addEventListener("input", validarNumerosCatalogo);
 
 CargoDatosCatalogos();
