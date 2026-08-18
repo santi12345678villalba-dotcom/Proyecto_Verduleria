@@ -9,6 +9,7 @@ body {
 
     background-repeat: no-repeat;
     background-position: center;
+
     background-size: cover;
     background-attachment: fixed;
 }
@@ -486,6 +487,11 @@ footer p {
     form {
         width: calc(100% - 24px);
         padding: 20px;
+    }
+
+    .contenedor form .row {
+        --bs-gutter-x: 0.25rem;
+        --bs-gutter-y: 0.25rem;
     }
 
     .listado {
