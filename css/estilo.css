@@ -493,12 +493,23 @@ footer p {
         --bs-gutter-x: 0.25rem;
         --bs-gutter-y: 0.25rem;
     }
-
     .listado {
-        width: calc(100% - 24px);
-        padding: 20px;
-    }
+    width: calc(100% - 24px);
+    padding: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+   }
 
+   .listado select {
+    min-width: 650px;
+   }
+
+   .listado label {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
     .campos {
         grid-template-columns: 1fr;
         gap: 10px;
