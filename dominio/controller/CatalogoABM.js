@@ -109,16 +109,8 @@ const mostrarComoLista = () => {
         html += '<td>' + catalogos[i].nombre + '</td>';
         html += '<td>' + catalogos[i].precio + '</td>';
         html += '<td>' + catalogos[i].stock + '</td>';
-
-        html += '<td class="acciones">';
-        html += '</td>';
-
         html += '</tr>';
     }
-
-    html += '</tbody>';
-    html += '</table>';
-
     contenedor.innerHTML = html;
 };
 
