@@ -24,8 +24,8 @@ Semana 2 - Interfaz Profesional
 Requisito | Lo que falta
 --- | ---
 CSS profesional | ❌ Mejorar estética general con variables CSS y refinamiento visual
-Validaciones más robustas | ❌ Faltan validaciones de duplicados, stock, fechas y feedback visual mejorado
-Delegación de eventos | ❌ En varias partes todavía queda lógica vieja y se puede mejorar
+Validaciones más robustas | tick Faltan validaciones de duplicados, stock, fechas y feedback visual mejorado
+Delegación de eventos | tick En varias partes todavía queda lógica vieja y se puede mejorar
 
 Semana 3 - Aplicaciones Dinámicas
 Requisito | Lo que falta

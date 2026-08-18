@@ -213,17 +213,19 @@ const EliminarVendedor = () => {
         }
     }
 
-    if (posicionVendedor != -1) {
-        vendedores.splice(posicionVendedor, 1);
-    }
+    ConfirmarModal("Desea eliminar el vendedor seleccionado?", () => {
+        if (posicionVendedor != -1) {
+            vendedores.splice(posicionVendedor, 1);
+        }
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('vendedores', vendedores);
+        const LaMemoria = new Memoria();
+        LaMemoria.escribir('vendedores', vendedores);
 
-    MostrarModal("Vendedor eliminado correctamente!");
+        MostrarModal("Vendedor eliminado correctamente!");
 
-    InicializarVendedor();
-    ListarVendedores();
+        InicializarVendedor();
+        ListarVendedores();
+    });
 };
 
 

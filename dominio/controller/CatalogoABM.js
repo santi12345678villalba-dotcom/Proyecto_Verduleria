@@ -286,24 +286,28 @@ const EliminarCatalogo = () => {
         return;
     }
 
+    
+
     for (let pos = 0; pos < catalogos.length; pos++) {
         if (catalogos[pos].codigo == codigoSeleccionado) {
             posicionCatalogo = pos;
         }
     }
 
-    if (posicionCatalogo != -1) {
-        catalogos.splice(posicionCatalogo, 1);
-    }
+    ConfirmarModal("Desea eliminar el catalogo seleccionado?", () => {
+        if (posicionCatalogo != -1) {
+            catalogos.splice(posicionCatalogo, 1);
+        }
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('catalogos', catalogos);
-    
-    MostrarModal("Catalogo eliminado correctamente!");
+        const LaMemoria = new Memoria();
+        LaMemoria.escribir('catalogos', catalogos);
 
-    InicializarCatalogo();
-    ListarCatalogos();
-    mostrarComoLista();
+        MostrarModal("Catalogo eliminado correctamente!");
+
+        InicializarCatalogo();
+        ListarCatalogos();
+        mostrarComoLista();
+    });
 };
 
 

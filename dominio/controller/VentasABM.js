@@ -632,42 +632,43 @@ const EliminarVenta = () => {
     }
 
 
-    if (posicionVenta != -1) {
-        ventas.splice(posicionVenta, 1);
-    }
+    ConfirmarModal("Desea eliminar la venta seleccionada?", () => {
+        if (posicionVenta != -1) {
+            ventas.splice(posicionVenta, 1);
+        }
+
+        const LaMemoria = new Memoria();
+
+        LaMemoria.escribir('ventas', ventas);
 
 
-    const LaMemoria = new Memoria();
+        // Devuelvo el stock y las cantidades
+        DevolverStock(
+            unaVenta.catalogo.codigo,
+            unaVenta.cantidad
+        );
 
-    LaMemoria.escribir('ventas', ventas);
+        DevolverCantidadVendidos(
+            unaVenta.catalogo.codigo,
+            unaVenta.cantidad
+        );
 
-
-    // Devuelvo el stock y las cantidades
-    DevolverStock(
-        unaVenta.catalogo.codigo,
-        unaVenta.cantidad
-    );
-
-    DevolverCantidadVendidos(
-        unaVenta.catalogo.codigo,
-        unaVenta.cantidad
-    );
-
-    LaMemoria.escribir('catalogos', catalogos);
+        LaMemoria.escribir('catalogos', catalogos);
 
 
-    // Actualizo cantidad de ventas del vendedor
-    DevolverCantidadVentas(
-        unaVenta.vendedor.codigo
-    );
+        // Actualizo cantidad de ventas del vendedor
+        DevolverCantidadVentas(
+            unaVenta.vendedor.codigo
+        );
 
-    LaMemoria.escribir('vendedores', vendedores);
+        LaMemoria.escribir('vendedores', vendedores);
 
 
-    MostrarModal("Venta eliminada correctamente!");
+        MostrarModal("Venta eliminada correctamente!");
 
-    InicializarVenta();
-    ListarVentas();
+        InicializarVenta();
+        ListarVentas();
+    });
 };
 
 
