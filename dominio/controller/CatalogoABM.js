@@ -44,7 +44,6 @@ const validarCamposCatalogo = (marcarCamposVacios = false) => {
     let descripcionInvalida = false;
     let precioInvalido = false;
     let stockInvalido = false;
-    let fotoInvalida = false;
 
     // Código
     if (codigo == "" && marcarCamposVacios) {
@@ -83,11 +82,6 @@ const validarCamposCatalogo = (marcarCamposVacios = false) => {
         stockInvalido = true;
     }
 
-    // Foto
-    if (foto == "" && marcarCamposVacios) {
-        fotoInvalida = true;
-    }
-
     // Mostrar o quitar los mensajes
     marcarCampo(
         "codigo",
@@ -124,20 +118,12 @@ const validarCamposCatalogo = (marcarCamposVacios = false) => {
             : ""
     );
 
-    marcarCampo(
-        "foto",
-        fotoInvalida
-            ? "Debe escribir el nombre de la imagen, por ejemplo: manzana.png."
-            : ""
-    );
-
     return !(
         codigoInvalido ||
         nombreInvalido ||
         descripcionInvalida ||
         precioInvalido ||
-        stockInvalido ||
-        fotoInvalida
+        stockInvalido
     );
 
 };
@@ -246,7 +232,7 @@ const InicializarCatalogo = () => {
 
 
 const AgregarCatalogo = () => {
-    if (!validarNumerosCatalogo(true)) {
+    if (!validarCamposCatalogo(true)) {
         MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
         return;
     }
@@ -268,6 +254,11 @@ const AgregarCatalogo = () => {
     for (let objCatalogo of catalogos) {
         if (objCatalogo.codigo == codigo) {
             MostrarModal("Ya existe un catálogo con ese código!");
+            return;
+        }
+
+        if (objCatalogo.nombre.trim().toLowerCase() == nombre.trim().toLowerCase()) {
+            MostrarModal("Ya existe un catálogo con ese nombre!");
             return;
         }
     }
@@ -322,7 +313,7 @@ const SeleccionarCatalogo = () => {
 
 
 const ModificarCatalogo = () => {
-    if (!validarNumerosCatalogo(true)) {
+    if (!validarCamposCatalogo(true)) {
         MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
         return;
     }
@@ -461,5 +452,25 @@ document
 document
     .getElementById("foto")
     .addEventListener("input", () => validarCamposCatalogo(false));
+
+document
+    .getElementById("btnAgregarCatalogo")
+    .addEventListener("click", AgregarCatalogo);
+
+document
+    .getElementById("btnModificarCatalogo")
+    .addEventListener("click", ModificarCatalogo);
+
+document
+    .getElementById("btnEliminarCatalogo")
+    .addEventListener("click", EliminarCatalogo);
+
+document
+    .getElementById("btnLimpiarCatalogo")
+    .addEventListener("click", LimpiarCatalogo);
+
+document
+    .getElementById("lista-catalogos")
+    .addEventListener("change", SeleccionarCatalogo);
 
 CargoDatosCatalogos();

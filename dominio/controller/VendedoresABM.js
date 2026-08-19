@@ -140,6 +140,16 @@ const AgregarVendedor = () => {
             MostrarModal("Ya existe un vendedor con ese código!");
             return;
         }
+
+        if (objVendedor.nombre.trim().toLowerCase() == nombre.trim().toLowerCase()) {
+            MostrarModal("Ya existe un vendedor con ese nombre!");
+            return;
+        }
+
+        if (String(objVendedor.cedula).trim() == cedula.trim()) {
+            MostrarModal("Ya existe un vendedor con esa cédula!");
+            return;
+        }
     }
 
     let unVendedor = new Vendedor(codigo, nombre, cedula);
