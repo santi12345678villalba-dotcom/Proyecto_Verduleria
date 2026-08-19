@@ -4,45 +4,157 @@ import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
 let catalogos = [];
+const marcarCampo = (id, mensaje = "") => {
+    const campo = document.getElementById(id);
+    const contenedor = campo.parentElement;
 
-const marcarCampo = (id, esInvalido) => {
-    let campo = document.getElementById(id);
+    let mensajeError = contenedor.querySelector(".mensaje-error");
 
-    if (esInvalido) {
+    if (mensaje != "") {
+        // Esta línea agrega el recuadro rojo
         campo.classList.add("campo-invalido");
+
+        if (!mensajeError) {
+            mensajeError = document.createElement("small");
+            mensajeError.classList.add("mensaje-error");
+            contenedor.appendChild(mensajeError);
+        }
+
+        mensajeError.textContent = mensaje;
     } else {
+        // Esta línea quita el recuadro rojo
         campo.classList.remove("campo-invalido");
+
+        if (mensajeError) {
+            mensajeError.remove();
+        }
     }
 };
 
-const validarNumerosCatalogo = () => {
-    let codigo = document.getElementById("codigo").value;
-    let precio = document.getElementById("precio").value;
-    let stock = document.getElementById("stock").value;
-    let valido = true;
+const validarCamposCatalogo = (marcarCamposVacios = false) => {
+    const codigo = document.getElementById("codigo").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const precio = document.getElementById("precio").value;
+    const stock = document.getElementById("stock").value;
+    const foto = document.getElementById("foto").value.trim();
+
+    let codigoInvalido = false;
+    let nombreInvalido = false;
+    let descripcionInvalida = false;
+    let precioInvalido = false;
+    let stockInvalido = false;
+    let fotoInvalida = false;
+
+    // Código
+    if (codigo == "" && marcarCamposVacios) {
+        codigoInvalido = true;
+    }
 
     if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) {
-        marcarCampo("codigo", true);
-        valido = false;
-    } else {
-        marcarCampo("codigo", false);
+        codigoInvalido = true;
+    }
+
+    // Nombre
+    if (nombre == "" && marcarCamposVacios) {
+        nombreInvalido = true;
+    }
+
+    // Descripción
+    if (descripcion == "" && marcarCamposVacios) {
+        descripcionInvalida = true;
+    }
+
+    // Precio
+    if (precio == "" && marcarCamposVacios) {
+        precioInvalido = true;
     }
 
     if (precio != "" && (isNaN(precio) || Number(precio) <= 0)) {
-        marcarCampo("precio", true);
-        valido = false;
-    } else {
-        marcarCampo("precio", false);
+        precioInvalido = true;
+    }
+
+    // Stock
+    if (stock == "" && marcarCamposVacios) {
+        stockInvalido = true;
     }
 
     if (stock != "" && (isNaN(stock) || Number(stock) < 0)) {
-        marcarCampo("stock", true);
-        valido = false;
-    } else {
-        marcarCampo("stock", false);
+        stockInvalido = true;
     }
 
-    return valido;
+    // Foto
+    if (foto == "" && marcarCamposVacios) {
+        fotoInvalida = true;
+    }
+
+    // Mostrar o quitar los mensajes
+    marcarCampo(
+        "codigo",
+        codigoInvalido
+            ? "El código debe ser un número."
+            : ""
+    );
+
+    marcarCampo(
+        "nombre",
+        nombreInvalido
+            ? "Debe escribir el nombre del producto."
+            : ""
+    );
+
+    marcarCampo(
+        "descripcion",
+        descripcionInvalida
+            ? "Debe escribir una descripción del producto."
+            : ""
+    );
+
+    marcarCampo(
+        "precio",
+        precioInvalido
+            ? "El precio debe ser un número."
+            : ""
+    );
+
+    marcarCampo(
+        "stock",
+        stockInvalido
+            ? "El stock debe ser un número"
+            : ""
+    );
+
+    marcarCampo(
+        "foto",
+        fotoInvalida
+            ? "Debe escribir el nombre de la imagen, por ejemplo: manzana.png."
+            : ""
+    );
+
+    return !(
+        codigoInvalido ||
+        nombreInvalido ||
+        descripcionInvalida ||
+        precioInvalido ||
+        stockInvalido ||
+        fotoInvalida
+    );
+
+};
+
+const limpiarMarcasCatalogo = () => {
+    const campos = [
+        "codigo",
+        "nombre",
+        "descripcion",
+        "precio",
+        "stock",
+        "foto"
+    ];
+
+    for (const campo of campos) {
+        marcarCampo(campo, "");
+    }
 };
 
 const inicializarInterfazCatalogo = () => {
@@ -125,13 +237,16 @@ const InicializarCatalogo = () => {
     document.getElementById("precio").value = "";
     document.getElementById("stock").value = "";
 
+     // Quito los bordes rojos y mensajes de error
+     limpiarMarcasCatalogo();
+
     // Pongo el foco en la caja de texto codigo
     document.getElementById("codigo").focus();
 };
 
 
 const AgregarCatalogo = () => {
-    if (!validarNumerosCatalogo()) {
+    if (!validarNumerosCatalogo(true)) {
         MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
         return;
     }
@@ -207,7 +322,7 @@ const SeleccionarCatalogo = () => {
 
 
 const ModificarCatalogo = () => {
-    if (!validarNumerosCatalogo()) {
+    if (!validarNumerosCatalogo(true)) {
         MostrarModal("Código, precio y stock deben tener valores numéricos válidos!");
         return;
     }
@@ -323,30 +438,28 @@ const LimpiarCatalogo = () => {
 
 //#endregion
 
-document.getElementById("btnAgregarCatalogo")
-    .addEventListener("click", AgregarCatalogo);
+document
+    .getElementById("codigo")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
-document.getElementById("btnModificarCatalogo")
-    .addEventListener("click", ModificarCatalogo);
+document
+    .getElementById("nombre")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
-document.getElementById("btnEliminarCatalogo")
-    .addEventListener("click", EliminarCatalogo);
+document
+    .getElementById("descripcion")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
-document.addEventListener('DOMContentLoaded', inicializarInterfazCatalogo);
+document
+    .getElementById("precio")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
-document.getElementById("btnLimpiarCatalogo")
-    .addEventListener("click", LimpiarCatalogo);
+document
+    .getElementById("stock")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
-document.getElementById("lista-catalogos")
-    .addEventListener("change", SeleccionarCatalogo);
-
-document.getElementById("codigo")
-    .addEventListener("input", validarNumerosCatalogo);
-
-document.getElementById("precio")
-    .addEventListener("input", validarNumerosCatalogo);
-
-document.getElementById("stock")
-    .addEventListener("input", validarNumerosCatalogo);
+document
+    .getElementById("foto")
+    .addEventListener("input", () => validarCamposCatalogo(false));
 
 CargoDatosCatalogos();

@@ -7,58 +7,132 @@ let ventas = [];
 let catalogos = [];
 let vendedores = [];
 
-const marcarCampoVenta = (id, esInvalido) => {
-    let campo = document.getElementById(id);
+const marcarCampoVenta = (id, mensaje = "") => {
+    const campo = document.getElementById(id);
+    const contenedor = campo.parentElement;
 
-    if (esInvalido) {
+    let mensajeError = contenedor.querySelector(".mensaje-error");
+
+    if (mensaje != "") {
         campo.classList.add("campo-invalido");
+
+        if (!mensajeError) {
+            mensajeError = document.createElement("small");
+            mensajeError.classList.add("mensaje-error");
+            contenedor.appendChild(mensajeError);
+        }
+
+        mensajeError.textContent = mensaje;
     } else {
         campo.classList.remove("campo-invalido");
+
+        if (mensajeError) {
+            mensajeError.remove();
+        }
     }
 };
-
 const validarCamposVenta = (marcarCamposVacios = false) => {
-    let codigo = document.getElementById("codigo").value;
-    let fecha = document.getElementById("fecha").value;
-    let vendedor = document.getElementById("codigo-vendedor").value;
-    let catalogo = document.getElementById("codigo-catalogo").value;
-    let cantidad = document.getElementById("cantidad").value;
+    const codigo = document.getElementById("codigo").value;
+    const fecha = document.getElementById("fecha").value;
+    const vendedor = document.getElementById("codigo-vendedor").value;
+    const catalogo = document.getElementById("codigo-catalogo").value;
+    const cantidad = document.getElementById("cantidad").value;
+
     let codigoInvalido = false;
     let fechaInvalida = false;
     let vendedorInvalido = false;
     let catalogoInvalido = false;
     let cantidadInvalida = false;
 
-    if (codigo == "" && marcarCamposVacios) codigoInvalido = true;
-    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) codigoInvalido = true;
-    if (fecha == "" && marcarCamposVacios) fechaInvalida = true;
-    if (fecha != "" && isNaN(Date.parse(fecha))) fechaInvalida = true;
-    if (vendedor == "" && marcarCamposVacios) vendedorInvalido = true;
-    if (catalogo == "" && marcarCamposVacios) catalogoInvalido = true;
-    if (cantidad == "" && marcarCamposVacios) cantidadInvalida = true;
-    if (cantidad != "" && (isNaN(cantidad) || Number(cantidad) <= 0)) cantidadInvalida = true;
-
-    marcarCampoVenta("codigo", codigoInvalido);
-    marcarCampoVenta("fecha", fechaInvalida);
-    marcarCampoVenta("codigo-vendedor", vendedorInvalido);
-    marcarCampoVenta("codigo-catalogo", catalogoInvalido);
-    marcarCampoVenta("cantidad", cantidadInvalida);
-
-    if (codigoInvalido || fechaInvalida || vendedorInvalido || catalogoInvalido || cantidadInvalida) {
-        return false;
+    if (codigo == "" && marcarCamposVacios) {
+        codigoInvalido = true;
     }
 
-    return true;
+    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) {
+        codigoInvalido = true;
+    }
+
+    if (fecha == "" && marcarCamposVacios) {
+        fechaInvalida = true;
+    }
+
+    if (fecha != "" && isNaN(Date.parse(fecha))) {
+        fechaInvalida = true;
+    }
+
+    if (vendedor == "" && marcarCamposVacios) {
+        vendedorInvalido = true;
+    }
+
+    if (catalogo == "" && marcarCamposVacios) {
+        catalogoInvalido = true;
+    }
+
+    if (cantidad == "" && marcarCamposVacios) {
+        cantidadInvalida = true;
+    }
+
+    if (cantidad != "" && (isNaN(cantidad) || Number(cantidad) <= 0)) {
+        cantidadInvalida = true;
+    }
+
+    marcarCampoVenta(
+        "codigo",
+        codigoInvalido
+            ? "El código debe ser un número."
+            : ""
+    );
+
+    marcarCampoVenta(
+        "fecha",
+        fechaInvalida
+            ? "Debe seleccionar una fecha válida."
+            : ""
+    );
+
+    marcarCampoVenta(
+        "codigo-vendedor",
+        vendedorInvalido
+            ? "Debe seleccionar un vendedor."
+            : ""
+    );
+
+    marcarCampoVenta(
+        "codigo-catalogo",
+        catalogoInvalido
+            ? "Debe seleccionar un producto del catálogo."
+            : ""
+    );
+
+    marcarCampoVenta(
+        "cantidad",
+        cantidadInvalida
+            ? "La cantidad debe ser un número mayor que 0."
+            : ""
+    );
+
+    return !(
+        codigoInvalido ||
+        fechaInvalida ||
+        vendedorInvalido ||
+        catalogoInvalido ||
+        cantidadInvalida
+    );
 };
 
 const limpiarMarcasVenta = () => {
-    const campos = ["codigo", "fecha", "codigo-vendedor", "codigo-catalogo", "cantidad"];
+    const campos = [
+        "codigo",
+        "fecha",
+        "codigo-vendedor",
+        "codigo-catalogo",
+        "cantidad"
+    ];
 
-    for (let campo of campos) {
-        marcarCampoVenta(campo, false);
+    for (const campo of campos) {
+        marcarCampoVenta(campo, "");
     }
 };
-
 const inicializarInterfazVentas = () => {
     initNavBar();
     initClima();
