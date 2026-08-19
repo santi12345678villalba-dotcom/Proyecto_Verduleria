@@ -13,6 +13,7 @@ const marcarCampo = (id, mensaje = "") => {
     if (mensaje != "") {
         // Esta línea agrega el recuadro rojo
         campo.classList.add("campo-invalido");
+        campo.setAttribute("aria-invalid", "true");
 
         if (!mensajeError) {
             mensajeError = document.createElement("small");
@@ -24,6 +25,7 @@ const marcarCampo = (id, mensaje = "") => {
     } else {
         // Esta línea quita el recuadro rojo
         campo.classList.remove("campo-invalido");
+        campo.setAttribute("aria-invalid", "false");
 
         if (mensajeError) {
             mensajeError.remove();
@@ -182,35 +184,39 @@ const ListarCatalogos = () => {
 
 
 const mostrarComoLista = () => {
-    let contenedor = document.getElementById("contenedorCatalogo");
-    let html = "";
+    const contenedor = document.getElementById("contenedorCatalogo");
+    const tabla = document.createElement("table");
+    tabla.classList.add("tabla-Catalgo");
 
-    html += '<table class="tabla-Catalgo">';
-    html += '<thead>';
-    html += '<tr>';
-    html += '<th>Foto</th>';
-    html += '<th>Codigo</th>';
-    html += '<th>Nombre</th>';
-    html += '<th>Precio</th>';
-    html += '<th>Stock</th>';
-    html += '</tr>';
-    html += '</thead>';
-    html += '<tbody>';
+    const encabezado = tabla.createTHead().insertRow();
+    ["Foto", "Codigo", "Nombre", "Precio", "Stock"].forEach(texto => {
+        const celda = document.createElement("th");
+        celda.textContent = texto;
+        encabezado.appendChild(celda);
+    });
 
-    for (let i = 0; i < catalogos.length; i++) {
-        html += '<tr>';
+    const cuerpo = tabla.createTBody();
+    for (const catalogo of catalogos) {
+        const fila = cuerpo.insertRow();
+        const celdaFoto = fila.insertCell();
+        const imagen = document.createElement("img");
+        imagen.classList.add("foto-lista");
+        const nombreFotoValido = /^[\w.-]+\.(png|jpe?g|gif|webp)$/i.test(catalogo.foto || "");
+        imagen.src = nombreFotoValido ? `imagenes/${catalogo.foto}` : "imagenes/sinlogo.png";
+        imagen.alt = "Foto de catalogo";
+        imagen.onerror = () => {
+            imagen.src = "imagenes/sinlogo.png";
+        };
+        celdaFoto.appendChild(imagen);
 
-        html += '<td><img class="foto-lista" src="imagenes/' + 
-                catalogos[i].foto + 
-                '" alt="Foto de catalogo" onerror="this.src=\'imagenes/sinlogo.png\'"></td>';
-
-        html += '<td>' + catalogos[i].codigo + '</td>';
-        html += '<td>' + catalogos[i].nombre + '</td>';
-        html += '<td>' + catalogos[i].precio + '</td>';
-        html += '<td>' + catalogos[i].stock + '</td>';
-        html += '</tr>';
+        [catalogo.codigo, catalogo.nombre, catalogo.precio, catalogo.stock]
+            .forEach(valor => {
+                const celda = fila.insertCell();
+                celda.textContent = valor;
+            });
     }
-    contenedor.innerHTML = html;
+
+    contenedor.replaceChildren(tabla);
 };
 
 

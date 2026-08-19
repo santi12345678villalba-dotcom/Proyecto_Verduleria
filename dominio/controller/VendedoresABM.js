@@ -13,6 +13,7 @@ const marcarCampoVendedor = (id, mensaje = "") => {
 
     if (mensaje != "") {
         campo.classList.add("campo-invalido");
+        campo.setAttribute("aria-invalid", "true");
 
         if (!mensajeError) {
             mensajeError = document.createElement("small");
@@ -23,6 +24,7 @@ const marcarCampoVendedor = (id, mensaje = "") => {
         mensajeError.textContent = mensaje;
     } else {
         campo.classList.remove("campo-invalido");
+        campo.setAttribute("aria-invalid", "false");
 
         if (mensajeError) {
             mensajeError.remove();

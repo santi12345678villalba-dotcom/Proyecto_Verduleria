@@ -1,10 +1,18 @@
+:root {
+    --verde-principal: #2e7d32;
+    --verde-oscuro: #1b5e20;
+    --verde-claro: #eef6ee;
+    --blanco: #ffffff;
+    --sombra-suave: 0 8px 20px rgba(0, 0, 0, .15);
+}
+
 /*ESTILOS GENERALES*/
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Trebuchet MS", Arial, sans-serif;
 
-    background-color: #eef6ee;
+    background-color: var(--verde-claro);
     background-image: url("../imagenes/fondo.png");
 
     background-repeat: no-repeat;
@@ -29,8 +37,8 @@ h1 {
     text-align: center;
     margin: 30px 0;
     font-size: 42px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #2e7d32;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: var(--verde-principal);
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -661,4 +669,8 @@ footer p {
 
 .btn-modal:hover {
     background-color: #449d44;
+}
+
+.brand-title {
+    color: var(--blanco);
 }

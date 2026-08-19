@@ -8,6 +8,7 @@ export function initNavBar() {
         event.preventDefault();
         const isOpen = menu.style.display === 'block';
         menu.style.display = isOpen ? 'none' : 'block';
+        toggle.setAttribute('aria-expanded', String(!isOpen));
     });
 }
 

@@ -60,6 +60,12 @@ const iconosPorCodigo = {
     99: '⛈️'
 };
 
+const crearDatoClima = (texto) => {
+    const dato = document.createElement('span');
+    dato.textContent = texto;
+    return dato;
+};
+
 export async function initClima() {
     const clima = document.querySelector('.clima');
     if (!clima) return;
@@ -88,15 +94,18 @@ export async function initClima() {
         valor.textContent = `${temperatura}°C`;
         icono.textContent = iconosPorCodigo[codigo] || '🌤️';
         icono.title = descripcion;
-        datosClima.innerHTML = `
-            <span>Sensación: ${sensacion}°C</span>
-            <span>Humedad: ${humedad}%</span>
-        `;
+        datosClima.replaceChildren(
+            crearDatoClima(`Sensación: ${sensacion}°C`),
+            crearDatoClima(`Humedad: ${humedad}%`)
+        );
     } catch (error) {
         valor.textContent = '--°C';
         icono.textContent = '🌤️';
         icono.title = 'Sin datos';
-        datosClima.innerHTML = '<span>Sensación: --°C</span><span>Humedad: --%</span>';
+        datosClima.replaceChildren(
+            crearDatoClima('Sensación: --°C'),
+            crearDatoClima('Humedad: --%')
+        );
     }
 }
 
