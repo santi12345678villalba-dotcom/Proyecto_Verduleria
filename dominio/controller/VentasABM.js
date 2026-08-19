@@ -1,11 +1,9 @@
 import { Ventas } from "../clases/ventas.js";
-import { Memoria } from "../memoria.js";
+import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-let ventas = [];
-let catalogos = [];
-let vendedores = [];
+const { ventas, catalogos, vendedores } = estado;
 
 const marcarCampoVenta = (id, mensaje = "") => {
     const campo = document.getElementById(id);
@@ -142,23 +140,7 @@ const inicializarInterfazVentas = () => {
 //#region Metodos de Ventas
 
 const CargoDatosVentas = () => {
-    const LaMemoria = new Memoria();
-
-    ventas = LaMemoria.leer('ventas');
-    catalogos = LaMemoria.leer('catalogos');
-    vendedores = LaMemoria.leer('vendedores');
-    
-    if (!ventas) {
-        ventas = [];
-    }
-
-    if (!catalogos) {
-        catalogos = [];
-    }
-
-    if (!vendedores) {
-        vendedores = [];
-    }
+    cargarEstado();
 
     InicializarVenta();
     CargarVendedores();
@@ -478,11 +460,7 @@ const AgregarVenta = () => {
     ActualizarCantidadVendidos(codigoCatalogo, cantidad);
     ActualizarCantidadVentas(codigoVendedor);
 
-    const LaMemoria = new Memoria();
-
-    LaMemoria.escribir('ventas', ventas);
-    LaMemoria.escribir('catalogos', catalogos);
-    LaMemoria.escribir('vendedores', vendedores);
+    guardarEstado();
 
     MostrarModal("Venta añadida correctamente!");
 
@@ -657,11 +635,7 @@ const ModificarVenta = () => {
     unaVenta.total = total;
 
 
-    const LaMemoria = new Memoria();
-
-    LaMemoria.escribir('ventas', ventas);
-    LaMemoria.escribir('catalogos', catalogos);
-    LaMemoria.escribir('vendedores', vendedores);
+    guardarEstado();
 
     MostrarModal("Venta modificada correctamente!");
 
@@ -711,9 +685,7 @@ const EliminarVenta = () => {
             ventas.splice(posicionVenta, 1);
         }
 
-        const LaMemoria = new Memoria();
-
-        LaMemoria.escribir('ventas', ventas);
+        guardarEstado();
 
 
         // Devuelvo el stock y las cantidades
@@ -727,15 +699,12 @@ const EliminarVenta = () => {
             unaVenta.cantidad
         );
 
-        LaMemoria.escribir('catalogos', catalogos);
-
-
         // Actualizo cantidad de ventas del vendedor
         DevolverCantidadVentas(
             unaVenta.vendedor.codigo
         );
 
-        LaMemoria.escribir('vendedores', vendedores);
+        guardarEstado();
 
 
         MostrarModal("Venta eliminada correctamente!");
@@ -747,9 +716,7 @@ const EliminarVenta = () => {
 
 
 const LimpiarVenta = () => {
-    const LaMemoria = new Memoria();
-
-    LaMemoria.escribir('ventas', ventas);
+    guardarEstado();
 
     MostrarModal("Cajas limpiadas correctamente!");
 

@@ -1,9 +1,9 @@
 import { Vendedor } from "../clases/vendedor.js";
-import { Memoria } from "../memoria.js";
+import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-let vendedores = [];
+const { vendedores } = estado;
 
 const marcarCampoVendedor = (id, mensaje = "") => {
     const campo = document.getElementById(id);
@@ -53,6 +53,10 @@ const validarCamposVendedor = (marcarCamposVacios = false) => {
         nombreInvalido = true;
     }
 
+    if (nombre != "" && /\d/.test(nombre)) {
+        nombreInvalido = true;
+    }
+
     // Validación de la cédula
     if (cedula == "" && marcarCamposVacios) {
         cedulaInvalida = true;
@@ -73,7 +77,9 @@ const validarCamposVendedor = (marcarCamposVacios = false) => {
     marcarCampoVendedor(
         "nombre",
         nombreInvalido
-            ? "Debe escribir el nombre del vendedor."
+            ? nombre == ""
+                ? "Debe escribir el nombre del vendedor."
+                : "El nombre no puede contener números."
             : ""
     );
 
@@ -106,12 +112,7 @@ const inicializarInterfazVendedor = () => {
 //#region Metodos de Vendedores
 
 const CargoDatosVendedor = () => {
-    const LaMemoria = new Memoria();
-    vendedores = LaMemoria.leer('vendedores');
-    
-    if (!vendedores) {
-        vendedores = [];
-    }
+    cargarEstado();
 
     InicializarVendedor();
     ListarVendedores();
@@ -155,8 +156,7 @@ const AgregarVendedor = () => {
     let unVendedor = new Vendedor(codigo, nombre, cedula);
     vendedores.push(unVendedor);
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('vendedores', vendedores);
+    guardarEstado();
 
     MostrarModal("Vendedor añadido correctamente!");
 
@@ -236,8 +236,7 @@ const ModificarVendedor = () => {
     unVendedor.nombre = nombre;
     unVendedor.cedula = cedula;
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('vendedores', vendedores);
+    guardarEstado();
 
     MostrarModal("Vendedor modificado correctamente!");
 
@@ -279,8 +278,7 @@ const EliminarVendedor = () => {
             vendedores.splice(posicionVendedor, 1);
         }
 
-        const LaMemoria = new Memoria();
-        LaMemoria.escribir('vendedores', vendedores);
+        guardarEstado();
 
         MostrarModal("Vendedor eliminado correctamente!");
 
@@ -291,9 +289,7 @@ const EliminarVendedor = () => {
 
 
 const LimpiarVendedor = () => {
-    const LaMemoria = new Memoria();
-
-    LaMemoria.escribir('vendedores', vendedores);
+    guardarEstado();
 
     MostrarModal("Cajas limpiadas correctamente!");
 

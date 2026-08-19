@@ -1,9 +1,9 @@
 import { Catalogo } from "../clases/catalogo.js";
-import { Memoria } from "../memoria.js";
+import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-let catalogos = [];
+const { catalogos } = estado;
 const marcarCampo = (id, mensaje = "") => {
     const campo = document.getElementById(id);
     const contenedor = campo.parentElement;
@@ -59,6 +59,10 @@ const validarCamposCatalogo = (marcarCamposVacios = false) => {
         nombreInvalido = true;
     }
 
+    if (nombre != "" && /\d/.test(nombre)) {
+        nombreInvalido = true;
+    }
+
     // Descripción
     if (descripcion == "" && marcarCamposVacios) {
         descripcionInvalida = true;
@@ -93,7 +97,9 @@ const validarCamposCatalogo = (marcarCamposVacios = false) => {
     marcarCampo(
         "nombre",
         nombreInvalido
-            ? "Debe escribir el nombre del producto."
+            ? nombre == ""
+                ? "Debe escribir el nombre del producto."
+                : "El nombre no puede contener números."
             : ""
     );
 
@@ -151,12 +157,7 @@ const inicializarInterfazCatalogo = () => {
 //#region Metodos de catalogos
 
 const CargoDatosCatalogos = () => {
-    const LaMemoria = new Memoria();
-    catalogos = LaMemoria.leer('catalogos');
-    
-    if (!catalogos) {
-        catalogos = [];
-    }
+    cargarEstado();
 
     InicializarCatalogo();
     ListarCatalogos();
@@ -285,8 +286,7 @@ const AgregarCatalogo = () => {
 
     catalogos.push(unCatalogo);
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('catalogos', catalogos);
+    guardarEstado();
 
     MostrarModal("Catalogo añadido correctamente!");
 
@@ -359,8 +359,7 @@ const ModificarCatalogo = () => {
     unCatalogo.precio = precio;
     unCatalogo.stock = stock;
 
-    const LaMemoria = new Memoria();
-    LaMemoria.escribir('catalogos', catalogos);
+    guardarEstado();
 
     MostrarModal("Catalogo modificado correctamente!");
 
@@ -405,8 +404,7 @@ const EliminarCatalogo = () => {
             catalogos.splice(posicionCatalogo, 1);
         }
 
-        const LaMemoria = new Memoria();
-        LaMemoria.escribir('catalogos', catalogos);
+        guardarEstado();
 
         MostrarModal("Catalogo eliminado correctamente!");
 
@@ -418,9 +416,7 @@ const EliminarCatalogo = () => {
 
 
 const LimpiarCatalogo = () => {
-    const LaMemoria = new Memoria();
-
-    LaMemoria.escribir('catalogos', catalogos);
+    guardarEstado();
 
     MostrarModal("Cajas limpiadas correctamente!");
 

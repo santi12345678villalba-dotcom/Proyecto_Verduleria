@@ -1,15 +1,9 @@
 
-import { Memoria } from '../memoria.js';
+import { estado, cargarEstado } from '../globals.js';
 
 export function initEstadisticas() {
-    const LaMemoria = new Memoria();
-    let ventas = LaMemoria.leer('ventas');
-    let catalogos = LaMemoria.leer('catalogos');
-    let vendedores = LaMemoria.leer('vendedores');
-
-    if (!ventas) ventas = [];
-    if (!catalogos) catalogos = [];
-    if (!vendedores) vendedores = [];
+    cargarEstado();
+    const { ventas, catalogos, vendedores } = estado;
 
     const totalRecaudado = document.getElementById('totalRecaudado');
     const masVendido = document.getElementById('masVendido');
