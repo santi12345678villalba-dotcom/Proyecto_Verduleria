@@ -1,128 +1,135 @@
-# 🍎 FrutaManía - Sistema de Gestión de Verdulería
+# 🍎 FrutaManía — Sistema de Gestión para Verdulería
 
----
+FrutaManía es una aplicación web desarrollada para administrar las operaciones principales de una verdulería. El sistema permite gestionar productos y vendedores, registrar ventas, controlar el stock y consultar estadísticas actualizadas a partir de la información almacenada.
 
-## 📝 Descripción
+El proyecto fue construido con HTML, CSS y JavaScript, utiliza módulos ES6 para organizar el código y guarda los datos en el navegador mediante LocalStorage. Además, incorpora Bootstrap para adaptar la interfaz a computadoras, tablets y dispositivos móviles.
 
-**FrutaManía** es una aplicación web diseñada para la gestión integral de una verdulería. Permite administrar el catálogo de productos, gestionar vendedores, registrar ventas y visualizar estadísticas en tiempo real.
+## Funcionalidades principales
 
-El sistema cuenta con un ABM completo (Alta, Baja, Modificación) para cada entidad, persistencia de datos mediante LocalStorage y una interfaz moderna y responsive.
+- ABM de productos, vendedores y ventas.
+- Persistencia local de la información con LocalStorage.
+- Control y actualización automática del stock.
+- Cálculo automático del importe total de cada venta.
+- Estadísticas de ventas actualizadas en tiempo real.
+- Catálogo visual de productos con imágenes.
+- Validación de campos, selecciones y stock disponible.
+- Consumo de servicios externos mediante Fetch API.
+- Mensajes y validaciones presentados mediante ventanas modales.
+- Diseño moderno, accesible y responsive con Bootstrap 5.
 
----
+## Estadísticas disponibles
 
-## ✨ Características Principales
+La pantalla principal muestra automáticamente:
 
-- ABM completo de productos, vendedores y ventas
-- Persistencia de datos con LocalStorage
-- Estadísticas en tiempo real (total recaudado, producto más vendido, mejor vendedor)
-- Visualización de productos con imágenes
-- Diseño responsive con Bootstrap
-- Consumo de API para cotización de monedas
-- Validaciones de stock y datos
-- Interfaz accesible y fácil de usar
----
+- Total recaudado por todas las ventas.
+- Producto con mayor cantidad de unidades vendidas.
+- Vendedor con mayor cantidad de ventas realizadas.
+- Listado de productos que todavía tienen stock disponible.
 
-## 📁 Estructura del Proyecto
+## Módulos del sistema
 
-```
-FrutaMania/
-│
+### Catálogo de productos
+
+- Agregar nuevos productos.
+- Modificar productos existentes.
+- Eliminar productos del catálogo.
+- Registrar código, nombre, descripción, precio, stock e imagen.
+- Visualizar los productos en una tabla con sus datos principales.
+- Utilizar una imagen predeterminada cuando la imagen indicada no existe.
+
+### Gestión de vendedores
+
+- Registrar vendedores mediante código, nombre y cédula.
+- Modificar y eliminar vendedores existentes.
+- Llevar el conteo automático de las ventas realizadas por cada vendedor.
+
+### Registro de ventas
+
+- Agregar, modificar y eliminar ventas.
+- Seleccionar un vendedor y un producto previamente registrados.
+- Completar automáticamente el precio del producto seleccionado.
+- Calcular el total según el precio y la cantidad ingresada.
+- Verificar que exista stock suficiente antes de confirmar la operación.
+- Descontar o devolver stock cuando una venta se agrega, modifica o elimina.
+- Actualizar automáticamente las estadísticas de productos y vendedores.
+
+##Tecnologías utilizadas
+
+| Tecnología | Uso en el proyecto |
+| **HTML5** | Estructura semántica de las páginas |
+| **CSS** | Estilos personalizados y adaptación visual |
+| **Bootstrap 5** | Componentes y diseño responsive |
+| **JavaScript ES6+** | Lógica, eventos, validaciones y manipulación del DOM |
+| **Módulos ES6** | Separación de clases, controladores y servicios |
+| **LocalStorage** | Persistencia de datos en el navegador |
+| **Fetch API** | Consumo de servicios externos |
+| **Git y GitHub** | Control de versiones y alojamiento del código |
+
+## Estructura del proyecto
+
+Proyecto_Verduleria/
 ├── css/
 │   └── estilo.css
-│
 ├── dominio/
 │   ├── clases/
 │   │   ├── catalogo.js
 │   │   ├── vendedor.js
 │   │   └── ventas.js
-│   │
 │   ├── controller/
 │   │   ├── CatalogoABM.js
+│   │   ├── Clima.js
 │   │   ├── Estadisticas.js
+│   │   ├── IndexController.js
+│   │   ├── modal.js
+│   │   ├── NavBar.js
 │   │   ├── VendedoresABM.js
 │   │   └── VentasABM.js
-│   │
-│   ├── globals.js
+│   ├── services/
+│   │   └── climaApi.js
 │   └── memoria.js
-│
 ├── imagenes/
+│   ├── banana.png
+│   ├── fondo.png
+│   ├── kiwi.png
+│   ├── lechuga.png
 │   ├── logo.png
 │   ├── Logoverduleria.png
-│   └── sinlogo.png
-│
+│   ├── manzana.png
+│   ├── papas.png
+│   ├── peras.png
+│   ├── remolacha.png
+│   ├── sandia.png
+│   ├── sinlogo.png
+│   ├── tomate.png
+│   ├── zanahoria.png
+│   └── zapallo.png
 ├── index.html
 ├── catalogo.html
 ├── vendedores.html
 ├── ventas.html
-│
 └── README.md
-```
 
----
+## Persistencia de datos
 
-## 🛠️ Tecnologías Utilizadas
+La aplicación guarda la información en LocalStorage utilizando las siguientes claves:
 
-| Tecnología | Descripción |
-|------------|-------------|
-| **HTML5** | Estructura del sitio |
-| **CSS3** | Estilos personalizados |
-| **Bootstrap 5** | Framework CSS responsive |
-| **JavaScript ES6+** | Lógica de programación |
-| **Módulos ES6** | Organización del código |
-| **LocalStorage** | Persistencia de datos |
-| **Fetch API** | Consumo de servicios externos |
-| **GitHub** | Control de versiones |
-| **Netlify** | Despliegue en producción |
+- catalogos: productos registrados, stock y unidades vendidas.
+- vendedores: datos de los vendedores y cantidad de ventas realizadas.
+- ventas: operaciones de venta registradas.
 
----
+Los datos permanecen disponibles en el mismo navegador hasta que se elimine el almacenamiento local.
 
-## 📋 Funcionalidades
+## Validaciones implementadas
 
-### Catálogo de Productos
-- Agregar, modificar y eliminar productos
-- Visualización en tabla con imágenes
-- Validación de precios y stock
+- Campos obligatorios.
+- Códigos y registros existentes.
+- Selección válida de producto y vendedor.
+- Valores numéricos para precio, cantidad y stock.
+- Disponibilidad de stock antes de registrar o modificar una venta.
+- Reposición correcta del stock al modificar o eliminar operaciones.
 
-### Gestión de Vendedores
-- Registrar, modificar y eliminar vendedores
-- Seguimiento automático de ventas realizadas
+## Contacto
 
-### Registro de Ventas
-- Registrar ventas con fecha automática
-- Selección de vendedor y producto
-- Cálculo automático del total
-- Validación de stock disponible
-- Actualización automática de stock y estadísticas
-
-### Estadísticas
-- Total recaudado
-- Producto más vendido
-- Mejor vendedor
-- Listado de productos con stock disponible
-
----
-
-
-## 📊 Estado del Proyecto
-
-| Hito | Estado | Fecha |
-|------|--------|-------|
-| Estructura inicial | ✅ Completado | Semana 1 |
-| Clases y LocalStorage | ✅ Completado | Semana 1 |
-| Módulos ES6 | ✅ Completado | Semana 1 |
-| Interfaz con Bootstrap | ✅ Completado | Semana 2 |
-| Responsive Design | ✅ Completado | Semana 2 |
-| Consumo de API | ✅ Completado | Semana 3 |
-| Async/Await | ✅ Completado | Semana 3 |
-| Accesibilidad | ✅ Completado | Semana 3 |
-| Seguridad | ✅ Completado | Semana 4 |
-| Publicación | ✅ Completado | Semana 4 |
-| Defensa | ⏳ Pendiente | Semana 6 |
-
----
-
-## 📬 Contacto
-
-- 📧 **Email:** frutamania@gmail.com
-- 📞 **Teléfono:** 099123456
-- 🏢 **Dirección:** Rosario, Avenida Principal 1234
+- **Email:** frutamania@gmail.com
+- **Teléfono:** 099 123 456
+- **Dirección:** Avenida Principal 1234, Rosario
