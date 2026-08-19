@@ -727,13 +727,16 @@ const LimpiarVenta = () => {
 //#endregion
 
 
-document.getElementById("btnAgregarVenta") .addEventListener("click", AgregarVenta);
+document.getElementById("botones-ventas").addEventListener("click", (event) => {
+    const acciones = {
+        btnAgregarVenta: AgregarVenta,
+        btnModificarVenta: ModificarVenta,
+        btnEliminarVenta: EliminarVenta,
+        btnLimpiarVenta: LimpiarVenta
+    };
 
-document.getElementById("btnModificarVenta").addEventListener("click", ModificarVenta);
-
-document.getElementById("btnEliminarVenta").addEventListener("click", EliminarVenta);
-
-document.getElementById("btnLimpiarVenta").addEventListener("click", LimpiarVenta);
+    acciones[event.target.id]?.();
+});
 document.getElementById("codigo-catalogo").addEventListener("change", () => {
     CargarPrecioCatalogo();
     CalculoTotal();

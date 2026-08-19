@@ -449,21 +449,16 @@ document
     .getElementById("foto")
     .addEventListener("input", () => validarCamposCatalogo(false));
 
-document
-    .getElementById("btnAgregarCatalogo")
-    .addEventListener("click", AgregarCatalogo);
+document.getElementById("botones-catalogo").addEventListener("click", (event) => {
+    const acciones = {
+        btnAgregarCatalogo: AgregarCatalogo,
+        btnModificarCatalogo: ModificarCatalogo,
+        btnEliminarCatalogo: EliminarCatalogo,
+        btnLimpiarCatalogo: LimpiarCatalogo
+    };
 
-document
-    .getElementById("btnModificarCatalogo")
-    .addEventListener("click", ModificarCatalogo);
-
-document
-    .getElementById("btnEliminarCatalogo")
-    .addEventListener("click", EliminarCatalogo);
-
-document
-    .getElementById("btnLimpiarCatalogo")
-    .addEventListener("click", LimpiarCatalogo);
+    acciones[event.target.id]?.();
+});
 
 document
     .getElementById("lista-catalogos")

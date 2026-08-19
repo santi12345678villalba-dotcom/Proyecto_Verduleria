@@ -299,17 +299,16 @@ const LimpiarVendedor = () => {
 
 //#endregion
 
-document.getElementById("btnAgregarVendedor")
-    .addEventListener("click", AgregarVendedor);
+document.getElementById("botones-vendedores").addEventListener("click", (event) => {
+    const acciones = {
+        btnAgregarVendedor: AgregarVendedor,
+        btnModificarVendedor: ModificarVendedor,
+        btnEliminarVendedor: EliminarVendedor,
+        btnLimpiarVendedor: LimpiarVendedor
+    };
 
-document.getElementById("btnModificarVendedor")
-    .addEventListener("click", ModificarVendedor);
-
-document.getElementById("btnEliminarVendedor")
-    .addEventListener("click", EliminarVendedor);
-
-document.getElementById("btnLimpiarVendedor")
-    .addEventListener("click", LimpiarVendedor);
+    acciones[event.target.id]?.();
+});
 
 document.getElementById("lista-vendedores")
     .addEventListener("change", SeleccionarVendedor);
