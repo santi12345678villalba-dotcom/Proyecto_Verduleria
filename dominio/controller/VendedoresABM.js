@@ -5,45 +5,96 @@ import { initClima } from './Clima.js';
 
 let vendedores = [];
 
-const marcarCampoVendedor = (id, esInvalido) => {
-    let campo = document.getElementById(id);
+const marcarCampoVendedor = (id, mensaje = "") => {
+    const campo = document.getElementById(id);
+    const contenedor = campo.parentElement;
 
-    if (esInvalido) {
+    let mensajeError = contenedor.querySelector(".mensaje-error");
+
+    if (mensaje != "") {
         campo.classList.add("campo-invalido");
+
+        if (!mensajeError) {
+            mensajeError = document.createElement("small");
+            mensajeError.classList.add("mensaje-error");
+            contenedor.appendChild(mensajeError);
+        }
+
+        mensajeError.textContent = mensaje;
     } else {
         campo.classList.remove("campo-invalido");
+
+        if (mensajeError) {
+            mensajeError.remove();
+        }
     }
 };
 
 const validarCamposVendedor = (marcarCamposVacios = false) => {
-    let codigo = document.getElementById("codigo").value;
-    let nombre = document.getElementById("nombre").value;
-    let cedula = document.getElementById("cedula").value;
+    const codigo = document.getElementById("codigo").value;
+    const nombre = document.getElementById("nombre").value;
+    const cedula = document.getElementById("cedula").value;
+
     let codigoInvalido = false;
     let nombreInvalido = false;
     let cedulaInvalida = false;
 
-    if (codigo == "" && marcarCamposVacios) codigoInvalido = true;
-    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) codigoInvalido = true;
-    if (nombre == "" && marcarCamposVacios) nombreInvalido = true;
-    if (cedula == "" && marcarCamposVacios) cedulaInvalida = true;
-    if (cedula != "" && (isNaN(cedula) || Number(cedula) <= 0)) cedulaInvalida = true;
+    // Validación del código
+    if (codigo == "" && marcarCamposVacios) {
+        codigoInvalido = true;
+    }
 
-    marcarCampoVendedor("codigo", codigoInvalido);
-    marcarCampoVendedor("nombre", nombreInvalido);
-    marcarCampoVendedor("cedula", cedulaInvalida);
+    if (codigo != "" && (isNaN(codigo) || Number(codigo) <= 0)) {
+        codigoInvalido = true;
+    }
 
+    // Validación del nombre
+    if (nombre == "" && marcarCamposVacios) {
+        nombreInvalido = true;
+    }
+
+    // Validación de la cédula
+    if (cedula == "" && marcarCamposVacios) {
+        cedulaInvalida = true;
+    }
+
+    if (cedula != "" && (isNaN(cedula) || Number(cedula) <= 0)) {
+        cedulaInvalida = true;
+    }
+
+    // Mostrar o quitar los mensajes
+    marcarCampoVendedor(
+        "codigo",
+        codigoInvalido
+            ? "El código debe ser un número."
+            : ""
+    );
+
+    marcarCampoVendedor(
+        "nombre",
+        nombreInvalido
+            ? "Debe escribir el nombre del vendedor."
+            : ""
+    );
+
+    marcarCampoVendedor(
+        "cedula",
+        cedulaInvalida
+            ? "La cédula debe contener números sin guiones."
+            : ""
+    );
+
+    // Devuelve false si algún campo es inválido
     if (codigoInvalido || nombreInvalido || cedulaInvalida) {
         return false;
     }
 
     return true;
 };
-
 const limpiarMarcasVendedor = () => {
-    marcarCampoVendedor("codigo", false);
-    marcarCampoVendedor("nombre", false);
-    marcarCampoVendedor("cedula", false);
+    marcarCampoVendedor("codigo", "");
+    marcarCampoVendedor("nombre", "");
+    marcarCampoVendedor("cedula", "");
 };
 
 const inicializarInterfazVendedor = () => {

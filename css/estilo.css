@@ -100,11 +100,18 @@ select {
 input.campo-invalido,
 textarea.campo-invalido,
 select.campo-invalido {
-    border-color: #dc3545;
-    background-color: #fff5f5;
-    box-shadow: 0 0 0 3px rgba(220, 53, 69, .15);
+    border: 2px solid #dc3545 !important;
+    background-color: #fff5f5 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important;
 }
 
+.mensaje-error {
+    display: block;
+    margin-top: 5px;
+    color: #dc3545;
+    font-size: 13px;
+    text-align: left;
+}
 form select {
     width: 100%;
 }
