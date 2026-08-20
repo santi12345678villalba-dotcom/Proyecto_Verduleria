@@ -3,7 +3,7 @@ import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-const { catalogos } = estado;
+const { catalogos, ventas } = estado;
 const marcarCampo = (id, mensaje = "") => {
     const campo = document.getElementById(id);
     const contenedor = campo.parentElement;
@@ -249,7 +249,7 @@ const AgregarCatalogo = () => {
     let codigo = document.getElementById("codigo").value;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
-    let precio = parseInt(document.getElementById("precio").value);
+    let precio = parseFloat(document.getElementById("precio").value);
     let stock = parseInt(document.getElementById("stock").value);
 
     // Validación de campos vacíos
@@ -331,7 +331,7 @@ const ModificarCatalogo = () => {
     let foto = document.getElementById("foto").value;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
-    let precio = parseInt(document.getElementById("precio").value);
+    let precio = parseFloat(document.getElementById("precio").value);
     let stock = parseInt(document.getElementById("stock").value);
 
     // Validación de campos vacíos
@@ -395,6 +395,13 @@ const EliminarCatalogo = () => {
     if (codigoSeleccionado == "") {
         MostrarModal("Debe seleccionar un catalogo!");
         return;
+    }
+
+    for (const venta of ventas) {
+        if (venta.catalogo != null && venta.catalogo.codigo == codigoSeleccionado) {
+            MostrarModal("No se puede eliminar un catalogo asociado a una venta.");
+            return;
+        }
     }
 
     

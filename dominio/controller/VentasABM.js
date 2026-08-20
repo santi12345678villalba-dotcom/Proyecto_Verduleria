@@ -303,6 +303,10 @@ const ListarVentas = () => {
         console.log("catalogo:", objVenta.catalogo);
         console.log("vendedor:", objVenta.vendedor);
 
+        if (!objVenta.catalogo || !objVenta.vendedor) {
+            continue;
+        }
+
         let texto = 'Codigo: ' + objVenta.codigo +
             ' - Fecha: ' + objVenta.fecha +
             ' - Nombre: ' + objVenta.vendedor.nombre +
@@ -390,7 +394,7 @@ const AgregarVenta = () => {
     let cantidad = parseInt(
         document.getElementById("cantidad").value
     );
-    let total = parseInt(
+    let total = parseFloat(
         document.getElementById("total").value
     );
 
@@ -524,7 +528,7 @@ const ModificarVenta = () => {
         parseInt(document.getElementById("cantidad").value);
 
     let total =
-        parseInt(document.getElementById("total").value);
+        parseFloat(document.getElementById("total").value);
 
 
     if (cantidad <= 0) {
