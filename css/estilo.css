@@ -166,6 +166,38 @@ button:hover {
     padding: 25px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+    overflow: hidden;
+}
+
+.listado-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: #a5d6a7 var(--verde-claro);
+    scrollbar-width: thin;
+}
+
+.listado-scroll select {
+    min-width: 650px;
+    background-color: var(--blanco);
+}
+
+.listado-scroll::-webkit-scrollbar {
+    height: 10px;
+}
+
+.listado-scroll::-webkit-scrollbar-track {
+    background: var(--verde-claro);
+    border-radius: 10px;
+}
+
+.listado-scroll::-webkit-scrollbar-thumb {
+    background: #a5d6a7;
+    border-radius: 10px;
+}
+
+.listado-scroll::-webkit-scrollbar-thumb:hover {
+    background: #81c784;
 }
 
 .listado label {
@@ -177,7 +209,8 @@ button:hover {
 }
 
 #lista-ventas {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
     height: 220px;
     padding: 10px;
     border-radius: 10px;
@@ -408,6 +441,19 @@ button:hover {
     text-align: center;
 }
 
+.pedidos article p {
+    text-align: center;
+}
+
+.pedidos article ul {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+    padding-left: 20px;
+    text-align: left;
+    list-style-position: outside;
+}
+
 
 /*PIE DE PÁGINA*/
 
@@ -517,22 +563,28 @@ footer p {
         --bs-gutter-y: 0.25rem;
     }
     .listado {
-    width: calc(100% - 24px);
-    padding: 20px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-   }
+        width: calc(100% - 24px);
+        padding: 20px;
+    }
 
-   .listado select {
-    min-width: 650px;
-   }
+    .listado-scroll {
+        scrollbar-color: #a5d6a7 var(--verde-claro);
+        scrollbar-width: thin;
+    }
 
-   .listado label {
-    position: sticky;
-    left: 0;
-    z-index: 1;
-}
+    .listado-scroll::-webkit-scrollbar {
+        height: 10px;
+    }
+
+    .listado-scroll select {
+        min-width: 650px;
+    }
+
+    .listado label {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+    }
     .campos {
         grid-template-columns: 1fr;
         gap: 10px;

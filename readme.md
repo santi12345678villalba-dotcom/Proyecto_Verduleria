@@ -53,7 +53,7 @@ La pantalla principal muestra automáticamente:
 - Descontar o devolver stock cuando una venta se agrega, modifica o elimina.
 - Actualizar automáticamente las estadísticas de productos y vendedores.
 
-##Tecnologías utilizadas
+### Tecnologías utilizadas
 
 | Tecnología | Uso en el proyecto |
 | **HTML5** | Estructura semántica de las páginas |
@@ -128,8 +128,6 @@ Los datos permanecen disponibles en el mismo navegador hasta que se elimine el a
 - Disponibilidad de stock antes de registrar o modificar una venta.
 - Reposición correcta del stock al modificar o eliminar operaciones.
 
-## Contacto
-
-- **Email:** frutamania@gmail.com
-- **Teléfono:** 099 123 456
-- **Dirección:** Avenida Principal 1234, Rosario
+## Integrantes del Grupo:
+-César Vilegas
+-Santiago Villalba 

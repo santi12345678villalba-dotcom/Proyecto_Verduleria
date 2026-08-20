@@ -107,7 +107,7 @@ const validarCamposVenta = (marcarCamposVacios = false) => {
     marcarCampoVenta(
         "cantidad",
         cantidadInvalida
-            ? "La cantidad debe ser un número mayor que 0."
+            ? "La cantidad debe ser un número mayor que 0 y no puede contener letras."
             : ""
     );
 
@@ -745,10 +745,10 @@ document.getElementById("codigo-catalogo").addEventListener("change", () => {
     validarCamposVenta();
 });
 document.getElementById("cantidad").addEventListener("input", CalculoTotal);
-document.getElementById("codigo").addEventListener("input", validarCamposVenta);
-document.getElementById("fecha").addEventListener("change", validarCamposVenta);
-document.getElementById("codigo-vendedor").addEventListener("change", validarCamposVenta);
-document.getElementById("cantidad").addEventListener("input", validarCamposVenta);
+document.getElementById("codigo").addEventListener("input", () => validarCamposVenta(false));
+document.getElementById("fecha").addEventListener("change", () => validarCamposVenta(false));
+document.getElementById("codigo-vendedor").addEventListener("change", () => validarCamposVenta(false));
+document.getElementById("cantidad").addEventListener("input", () => validarCamposVenta(false));
 document.getElementById("lista-ventas").addEventListener("change", SeleccionarVenta);
 
 document.addEventListener('DOMContentLoaded', inicializarInterfazVentas);
