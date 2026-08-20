@@ -53,7 +53,7 @@ La pantalla principal muestra automáticamente:
 - Descontar o devolver stock cuando una venta se agrega, modifica o elimina.
 - Actualizar automáticamente las estadísticas de productos y vendedores.
 
-## Tecnologías utilizadas
+### Tecnologías utilizadas
 
 | Tecnología | Uso en el proyecto |
 | **HTML5** | Estructura semántica de las páginas |
@@ -134,7 +134,7 @@ Los datos permanecen disponibles en el mismo navegador hasta que se elimine el a
 
 - **Semana 1:** reorganización del proyecto, clases JavaScript y módulos ES6.
 - **Semana 2:** Bootstrap 5, CSS responsive, formularios, validaciones y delegación de eventos.
-- **Semana 3:** Fetch, API pública del clima, `async/await`, LocalStorage y mejoras de usabilidad.
+- **Semana 3:** Fetch, API pública del clima, async/await, LocalStorage y mejoras de usabilidad.
 - **Semana 4:** prevención de XSS mediante creación segura de nodos, validación de datos, SEO básico y manejo de errores.
 - **Semana 5:** corrección de relaciones entre ventas, productos y vendedores; revisión de accesibilidad y documentación.
 - **Semana 6:** pruebas finales, publicación y preparación de la defensa.
@@ -148,7 +148,7 @@ Los datos permanecen disponibles en el mismo navegador hasta que se elimine el a
 
 ### Seguridad y accesibilidad
 
-Los datos generados por usuarios se muestran usando `textContent`, `createElement` y `replaceChildren`, evitando insertar esos valores como HTML. Las imágenes del catálogo validan el nombre del archivo y utilizan una imagen alternativa si falla la carga. Los formularios poseen etiquetas asociadas, mensajes de error y estados `aria-invalid`.
+Los datos generados por usuarios se muestran usando textContent, createElement y replaceChildren, evitando insertar esos valores como HTML. Las imágenes del catálogo validan el nombre del archivo y utilizan una imagen alternativa si falla la carga. Los formularios poseen etiquetas asociadas, mensajes de error y estados aria-invalid.
 
 ### Funcionalidades pendientes
 
@@ -159,10 +159,10 @@ Los datos generados por usuarios se muestran usando `textContent`, `createElemen
 
 ### Ejecución
 
-La aplicación es estática y puede ejecutarse mediante un servidor local, por ejemplo la extensión Live Server de Visual Studio Code. Se recomienda abrir `index.html` a través de HTTP para que los módulos ES6 funcionen correctamente.
+La aplicación es estática y puede ejecutarse mediante un servidor local, por ejemplo la extensión Live Server de Visual Studio Code. Se recomienda abrir index.html a través de HTTP para que los módulos ES6 funcionen correctamente.
 
-## Contacto
+## Integrantes del Equipo de Trabajo:
+-César Villegas
+-Santiago Villalba
 
-- **Email:** frutamania@gmail.com
-- **Teléfono:** 099 123 456
-- **Dirección:** Avenida Principal 1234, Rosario
+
