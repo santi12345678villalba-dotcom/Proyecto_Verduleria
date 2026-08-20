@@ -269,8 +269,8 @@ const EliminarVendedor = () => {
         return;
     }
 
-    for (let objVenta of ventas) {
-        if (objVenta.vendedor.codigo == codigoSeleccionado) {
+    for (let pos = 0; pos < ventas.length; pos++) {
+        if (ventas[pos].vendedor.codigo == codigoSeleccionado) {
             MostrarModal("No se puede eliminar este vendedor porque tiene ventas registradas!");
             return;
         }

@@ -95,6 +95,7 @@ const MostrarModal = (mensaje, titulo = "FrutaManía") => {
     };
 
     modal.style.display = "flex";
+    setTimeout(() => aceptar.focus(), 0);
 };
 
 
@@ -117,6 +118,7 @@ const ConfirmarModal = (mensaje, accion, titulo = "Confirmar accion") => {
     };
 
     modal.style.display = "flex";
+    setTimeout(() => aceptar.focus(), 0);
 };
 
 

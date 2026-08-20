@@ -397,8 +397,8 @@ const EliminarCatalogo = () => {
         return;
     }
 
-    for (let objVenta of ventas) {
-        if (objVenta.catalogo.codigo == codigoSeleccionado) {
+    for (let pos = 0; pos < ventas.length; pos++) {
+        if (ventas[pos].catalogo.codigo == codigoSeleccionado) {
             MostrarModal("No se puede eliminar este catalogo porque tiene ventas registradas!");
             return;
         }
