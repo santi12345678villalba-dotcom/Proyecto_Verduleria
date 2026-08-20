@@ -3,7 +3,7 @@ import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-const { vendedores } = estado;
+const { vendedores, ventas } = estado;
 
 const marcarCampoVendedor = (id, mensaje = "") => {
     const campo = document.getElementById(id);
@@ -267,6 +267,13 @@ const EliminarVendedor = () => {
     if (codigoSeleccionado == "") {
         MostrarModal("Debe seleccionar un Vendedor!");
         return;
+    }
+
+    for (let objVenta of ventas) {
+        if (objVenta.vendedor.codigo == codigoSeleccionado) {
+            MostrarModal("No se puede eliminar este vendedor porque tiene ventas registradas!");
+            return;
+        }
     }
 
     for (let pos = 0; pos < vendedores.length; pos++) {

@@ -3,7 +3,7 @@ import { estado, cargarEstado, guardarEstado } from "../globals.js";
 import { initNavBar } from './NavBar.js';
 import { initClima } from './Clima.js';
 
-const { catalogos } = estado;
+const { catalogos, ventas } = estado;
 const marcarCampo = (id, mensaje = "") => {
     const campo = document.getElementById(id);
     const contenedor = campo.parentElement;
@@ -395,6 +395,13 @@ const EliminarCatalogo = () => {
     if (codigoSeleccionado == "") {
         MostrarModal("Debe seleccionar un catalogo!");
         return;
+    }
+
+    for (let objVenta of ventas) {
+        if (objVenta.catalogo.codigo == codigoSeleccionado) {
+            MostrarModal("No se puede eliminar este catalogo porque tiene ventas registradas!");
+            return;
+        }
     }
 
     

@@ -431,6 +431,7 @@ const AgregarVenta = () => {
             MostrarModal("Ya existe una venta con ese código!");
             return;
         }
+
     }
 
     if (isNaN(cantidad) || isNaN(total)) {
@@ -561,7 +562,6 @@ const ModificarVenta = () => {
         MostrarModal("No se encontró la venta seleccionada!");
         return;
     }
-
 
     let unCatalogo = BuscarCatalogo(codigoCatalogo);
 
