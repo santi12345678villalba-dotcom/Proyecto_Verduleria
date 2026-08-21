@@ -477,4 +477,6 @@ document
     .getElementById("lista-catalogos")
     .addEventListener("change", SeleccionarCatalogo);
 
+document.addEventListener('DOMContentLoaded', inicializarInterfazCatalogo);
+
 CargoDatosCatalogos();
