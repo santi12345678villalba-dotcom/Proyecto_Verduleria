@@ -58,7 +58,7 @@ La pantalla principal muestra automáticamente:
 - Descontar o devolver stock cuando una venta se agrega, modifica o elimina.
 - Actualizar automáticamente las estadísticas de productos y vendedores.
 
-##Tecnologías utilizadas
+### Tecnologías utilizadas
 
 | Tecnología | Uso en el proyecto |
 | **HTML5** | Estructura semántica de las páginas |
@@ -133,8 +133,41 @@ Los datos permanecen disponibles en el mismo navegador hasta que se elimine el a
 - Disponibilidad de stock antes de registrar o modificar una venta.
 - Reposición correcta del stock al modificar o eliminar operaciones.
 
-## Contacto
+## Taller 2026
 
-- **Email:** frutamania@gmail.com
-- **Teléfono:** 099 123 456
-- **Dirección:** Avenida Principal 1234, Rosario
+### Avances por semana
+
+- **Semana 1:** reorganización del proyecto, clases JavaScript y módulos ES6.
+- **Semana 2:** Bootstrap 5, CSS responsive, formularios, validaciones y delegación de eventos.
+- **Semana 3:** Fetch, API pública del clima, async/await, LocalStorage y mejoras de usabilidad.
+- **Semana 4:** prevención de XSS mediante creación segura de nodos, validación de datos, SEO básico y manejo de errores.
+- **Semana 5:** corrección de relaciones entre ventas, productos y vendedores; revisión de accesibilidad y documentación.
+- **Semana 6:** pruebas finales, publicación y preparación de la defensa.
+
+### Problemas encontrados y soluciones
+
+- Las ventas podían conservar referencias antiguas después de recargar la página. Se resolvió persistiendo códigos de catálogo y vendedor, y reconstruyendo las relaciones al cargar.
+- El LocalStorage podía romper la aplicación si contenía JSON inválido. Ahora los datos corruptos se descartan de forma controlada.
+- Se podía eliminar un producto o vendedor asociado a ventas. La aplicación ahora bloquea esa operación para preservar la integridad de los datos.
+- Los mensajes modales no tenían semántica accesible. Se agregó rol de diálogo, descripción, cierre con Escape y foco inicial.
+
+### Seguridad y accesibilidad
+
+Los datos generados por usuarios se muestran usando textContent, createElement y replaceChildren, evitando insertar esos valores como HTML. Las imágenes del catálogo validan el nombre del archivo y utilizan una imagen alternativa si falla la carga. Los formularios poseen etiquetas asociadas, mensajes de error y estados aria-invalid.
+
+### Funcionalidades pendientes
+
+- Publicar la aplicación y agregar la URL definitiva.
+- Incorporar filtros y búsqueda en los listados.
+- Agregar gráficos de ventas y recaudación.
+- Realizar pruebas manuales en navegadores y dispositivos móviles.
+
+### Ejecución
+
+La aplicación es estática y puede ejecutarse mediante un servidor local, por ejemplo la extensión Live Server de Visual Studio Code. Se recomienda abrir index.html a través de HTTP para que los módulos ES6 funcionen correctamente.
+
+## Integrantes del Equipo de Trabajo:
+-César Villegas
+-Santiago Villalba
+
+

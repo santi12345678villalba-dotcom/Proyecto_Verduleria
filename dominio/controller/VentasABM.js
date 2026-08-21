@@ -107,7 +107,7 @@ const validarCamposVenta = (marcarCamposVacios = false) => {
     marcarCampoVenta(
         "cantidad",
         cantidadInvalida
-            ? "La cantidad debe ser un número mayor que 0."
+            ? "La cantidad debe ser un número mayor que 0 y no puede contener letras."
             : ""
     );
 
@@ -303,6 +303,10 @@ const ListarVentas = () => {
         console.log("catalogo:", objVenta.catalogo);
         console.log("vendedor:", objVenta.vendedor);
 
+        if (!objVenta.catalogo || !objVenta.vendedor) {
+            continue;
+        }
+
         let texto = 'Codigo: ' + objVenta.codigo +
             ' - Fecha: ' + objVenta.fecha +
             ' - Nombre: ' + objVenta.vendedor.nombre +
@@ -390,7 +394,7 @@ const AgregarVenta = () => {
     let cantidad = parseInt(
         document.getElementById("cantidad").value
     );
-    let total = parseInt(
+    let total = parseFloat(
         document.getElementById("total").value
     );
 
@@ -525,7 +529,7 @@ const ModificarVenta = () => {
         parseInt(document.getElementById("cantidad").value);
 
     let total =
-        parseInt(document.getElementById("total").value);
+        parseFloat(document.getElementById("total").value);
 
 
     if (cantidad <= 0) {
@@ -745,10 +749,10 @@ document.getElementById("codigo-catalogo").addEventListener("change", () => {
     validarCamposVenta();
 });
 document.getElementById("cantidad").addEventListener("input", CalculoTotal);
-document.getElementById("codigo").addEventListener("input", validarCamposVenta);
-document.getElementById("fecha").addEventListener("change", validarCamposVenta);
-document.getElementById("codigo-vendedor").addEventListener("change", validarCamposVenta);
-document.getElementById("cantidad").addEventListener("input", validarCamposVenta);
+document.getElementById("codigo").addEventListener("input", () => validarCamposVenta(false));
+document.getElementById("fecha").addEventListener("change", () => validarCamposVenta(false));
+document.getElementById("codigo-vendedor").addEventListener("change", () => validarCamposVenta(false));
+document.getElementById("cantidad").addEventListener("input", () => validarCamposVenta(false));
 document.getElementById("lista-ventas").addEventListener("change", SeleccionarVenta);
 
 document.addEventListener('DOMContentLoaded', inicializarInterfazVentas);

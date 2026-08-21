@@ -2,13 +2,13 @@
 const CrearModal = () => {
 
     const modalHTML = `
-        <div id="myModal" class="modal">
+        <div id="myModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitulo" aria-describedby="modalMensaje" tabindex="-1">
 
             <div class="modal-content">
 
                 <div class="modal-header">
 
-                    <span id="cerrarModal" class="close">&times;</span>
+                    <button id="cerrarModal" class="close" type="button" aria-label="Cerrar ventana">&times;</button>
 
                     <h2 id="modalTitulo">FrutaManía</h2>
 
@@ -54,6 +54,12 @@ const CrearModal = () => {
         modal.style.display = "none";
     };
 
+    modal.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            modal.style.display = "none";
+        }
+    });
+
     cancelar.onclick = () => {
         modal.style.display = "none";
     };
@@ -95,7 +101,7 @@ const MostrarModal = (mensaje, titulo = "FrutaManía") => {
     };
 
     modal.style.display = "flex";
-    setTimeout(() => aceptar.focus(), 0);
+    aceptar.focus();
 };
 
 
@@ -118,7 +124,7 @@ const ConfirmarModal = (mensaje, accion, titulo = "Confirmar accion") => {
     };
 
     modal.style.display = "flex";
-    setTimeout(() => aceptar.focus(), 0);
+    aceptar.focus();
 };
 
 

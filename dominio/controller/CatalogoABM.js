@@ -249,7 +249,7 @@ const AgregarCatalogo = () => {
     let codigo = document.getElementById("codigo").value;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
-    let precio = parseInt(document.getElementById("precio").value);
+    let precio = parseFloat(document.getElementById("precio").value);
     let stock = parseInt(document.getElementById("stock").value);
 
     // Validación de campos vacíos
@@ -331,7 +331,7 @@ const ModificarCatalogo = () => {
     let foto = document.getElementById("foto").value;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
-    let precio = parseInt(document.getElementById("precio").value);
+    let precio = parseFloat(document.getElementById("precio").value);
     let stock = parseInt(document.getElementById("stock").value);
 
     // Validación de campos vacíos
@@ -397,9 +397,9 @@ const EliminarCatalogo = () => {
         return;
     }
 
-    for (let pos = 0; pos < ventas.length; pos++) {
-        if (ventas[pos].catalogo.codigo == codigoSeleccionado) {
-            MostrarModal("No se puede eliminar este catalogo porque tiene ventas registradas!");
+    for (const venta of ventas) {
+        if (venta.catalogo != null && venta.catalogo.codigo == codigoSeleccionado) {
+            MostrarModal("No se puede eliminar un catalogo asociado a una venta.");
             return;
         }
     }
