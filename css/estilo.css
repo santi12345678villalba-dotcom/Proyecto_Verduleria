@@ -482,6 +482,12 @@ footer p {
         padding: 0 10px;
     }
 
+    body > header + header h2,
+    .contenedor > header h2 {
+        margin: 28px 0 20px;
+        text-align: center;
+    }
+
     .barra {
         width: calc(100% - 20px);
         max-width: 390px;
