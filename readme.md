@@ -4,6 +4,11 @@ FrutaManía es una aplicación web desarrollada para administrar las operaciones
 
 El proyecto fue construido con HTML, CSS y JavaScript, utiliza módulos ES6 para organizar el código y guarda los datos en el navegador mediante LocalStorage. Además, incorpora Bootstrap para adaptar la interfaz a computadoras, tablets y dispositivos móviles.
 
+## Enlaces
+
+- **Repositorio en GitHub:** https://github.com/santi12345678villalba-dotcom/Proyecto_Verduleria
+- **Proyecto publicado:** https://santi12345678villalba-dotcom.github.io/Proyecto_Verduleria/
+
 ## Funcionalidades principales
 
 - ABM de productos, vendedores y ventas.
